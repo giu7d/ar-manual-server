@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { createAccountController } from "./useCases/CreateAccount";
+import { createAccountController } from "./useCases/Accounts/CreateAccount";
 
 const routes = Router();
 
