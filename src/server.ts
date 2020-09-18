@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { app } from "./app";
 
 const { ENV = "development", PORT = 3333 } = process.env;
