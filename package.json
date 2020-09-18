@@ -5,7 +5,9 @@
   "author": "Giuseppe Setem <giuseppe7d@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules -r dotenv/config src/server.ts"
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules -r dotenv/config src/server.ts",
+    "build:ts": "tsc --build",
+    "clear": "rimraf ./build"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",

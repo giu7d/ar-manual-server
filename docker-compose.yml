@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "8080:8080"
+      - "9229:9229"
+    depends_on:
+      - postgresdb
+    environment:
+      TYPEORM_HOST: "postgresdb"
+    volumes:
+      - ./:/usr/app
+    command: yarn start
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "giuseppe@dev.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgresdb
+
+  postgresdb:
+    image: postgres:12.4-alpine
+    container_name: postgresdb
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: project_db
+    volumes:
+      - dbdata:/data/db
+
+volumes:
+  dbdata:

@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "target": "es2017",
     "module": "commonjs",
+    "lib": ["ES2020"],
     "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "baseUrl": "."
   },
   "include": ["src/**/*.ts"]
 }

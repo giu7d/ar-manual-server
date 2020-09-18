@@ -20,6 +20,3 @@ yarn-debug.log*
 yarn-error.log*
 *.lock
 *-lock.json
-
-# env
-.env
