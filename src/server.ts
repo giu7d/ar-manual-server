@@ -1,11 +1,12 @@
 import "reflect-metadata";
+
 import { app } from "./app";
 
 const { ENV = "development", PORT = 3333 } = process.env;
 
 app.listen(PORT, () => {
-  console.log(
-    `        
+	console.log(
+		`        
 \x1b[35m
  ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄   ▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄   
 █       █       █   ▄  █ █  █ █  █       █   ▄  █  
@@ -24,5 +25,5 @@ app.listen(PORT, () => {
 \x1b\t[94mhttp://localhost:${PORT}\x1b[39m
   ------------------------------
   `
-  );
+	);
 });
