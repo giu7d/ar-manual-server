@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { authenticateAccountController } from "src/useCases/Accounts/AuthenticateAccount";
 import { createAccountController } from "src/useCases/Accounts/CreateAccount";
 import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 
@@ -9,6 +10,12 @@ routes.post(
 	"/accounts",
 	(req, res, next) => createAccountController.validator(req, res, next),
 	(req, res) => createAccountController.handle(req, res)
+);
+
+routes.post(
+	"/accounts/auth",
+	(req, res, next) => authenticateAccountController.validator(req, res, next),
+	(req, res) => authenticateAccountController.handle(req, res)
 );
 
 routes.delete(
