@@ -28,5 +28,7 @@ export class CreateAccountUseCase {
 		});
 
 		await this.accountsRepository.save(account);
+
+		return { id: account.id };
 	}
 }
