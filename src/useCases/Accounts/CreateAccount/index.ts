@@ -1,16 +1,14 @@
-import { MailtrapMailProvider } from "../../../providers/implementations/MailtrapMailProvider";
-import { PostgressAccountRepository } from "../../../repositories/implementations/PostgresAccountRepository";
+import { PGAccountRepository } from "src/repositories/Account/implementations/PGAccountRepository";
+
 import { CreateAccountUseCase } from "./CreateAccountUseCase";
 import { CreateAccountController } from "./CreateAccountController";
+import { createAccountValidator } from "./CreateAccountValidator";
 
-const mailtrapMailProvider = new MailtrapMailProvider();
-const postgressAccountRepository = new PostgressAccountRepository();
+const accountRepository = new PGAccountRepository();
 
-export const createAccountUseCase = new CreateAccountUseCase(
-	postgressAccountRepository,
-	mailtrapMailProvider
-);
+export const createAccountUseCase = new CreateAccountUseCase(accountRepository);
 
 export const createAccountController = new CreateAccountController(
-	createAccountUseCase
+	createAccountUseCase,
+	createAccountValidator
 );

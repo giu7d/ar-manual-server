@@ -1,11 +1,15 @@
 import { Router } from "express";
 
-import { createAccountController } from "./useCases/Accounts/CreateAccount";
+import { createAccountController } from "src/useCases/Accounts/CreateAccount";
 
 const routes = Router();
 
-routes.post("/accounts", (request, response) => {
-	return createAccountController.handle(request, response);
-});
+routes.post(
+	"/accounts",
+	(req, res, next) => createAccountController.validator(req, res, next),
+	(req, res) => {
+		return createAccountController.handle(req, res);
+	}
+);
 
 export { routes };
