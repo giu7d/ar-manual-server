@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { authenticationMiddleware } from "src/middleware/Authentication";
 import { authenticateAccountController } from "src/useCases/Accounts/AuthenticateAccount";
 import { createAccountController } from "src/useCases/Accounts/CreateAccount";
 import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
@@ -20,6 +21,7 @@ routes.post(
 
 routes.delete(
 	"/accounts/:id",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => deleteAccountController.validator(req, res, next),
 	(req, res) => deleteAccountController.handle(req, res)
 );
