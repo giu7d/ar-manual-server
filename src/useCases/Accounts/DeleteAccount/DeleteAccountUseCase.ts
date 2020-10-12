@@ -6,6 +6,7 @@ export class DeleteAccountUseCase {
 	constructor(private accountsRepository: IAccountsRepositories) {}
 
 	async execute(data: IDeleteAccountRequestDTO) {
-		await this.accountsRepository.delete(data.id);
+		const account = await this.accountsRepository.findById(data.id);
+		await this.accountsRepository.delete(account.id);
 	}
 }

@@ -1,5 +1,4 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
-import { Analysis } from "../Analysis/Analysis";
 
 import { Account } from "./Account";
 

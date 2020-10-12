@@ -1,7 +1,12 @@
-import { DTO } from "./ShowAccountDTO";
+import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
 
-export class UseCase {
-	async execute(data: DTO) {
-		return data;
+import { IShowAccountRequestDTO } from "./ShowAccountDTO";
+
+export class ShowAccountUseCase {
+	constructor(private accountsRepository: IAccountsRepositories) {}
+
+	async execute(data: IShowAccountRequestDTO) {
+		const account = await this.accountsRepository.findById(data.id);
+		return account;
 	}
 }

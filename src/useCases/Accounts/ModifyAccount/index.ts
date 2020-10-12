@@ -1,7 +1,14 @@
-import { Controller } from "./ModifyAccountController";
-import { UseCase } from "./ModifyAccountUseCase";
-import { validatorHandler } from "./ModifyAccountValidator";
+import { PGAccountRepository } from "src/repositories/Account/implementations/PGAccountRepository";
 
-const useCase = new UseCase();
+import { ModifyAccountController } from "./ModifyAccountController";
+import { ModifyAccountUseCase } from "./ModifyAccountUseCase";
+import { modifyAccountValidatorHandler } from "./ModifyAccountValidator";
 
-export const controller = new Controller(useCase, validatorHandler);
+const modifyAccountUseCase = new ModifyAccountUseCase(
+	new PGAccountRepository()
+);
+
+export const modifyAccountController = new ModifyAccountController(
+	modifyAccountUseCase,
+	modifyAccountValidatorHandler
+);

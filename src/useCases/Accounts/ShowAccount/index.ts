@@ -1,7 +1,12 @@
-import { Controller } from "./ShowAccountController";
-import { UseCase } from "./ShowAccountUseCase";
-import { validatorHandler } from "./ShowAccountValidator";
+import { PGAccountRepository } from "src/repositories/Account/implementations/PGAccountRepository";
 
-const useCase = new UseCase();
+import { ShowAccountController } from "./ShowAccountController";
+import { ShowAccountUseCase } from "./ShowAccountUseCase";
+import { showAccountValidatorHandler } from "./ShowAccountValidator";
 
-export const controller = new Controller(useCase, validatorHandler);
+const showAccountUseCase = new ShowAccountUseCase(new PGAccountRepository());
+
+export const showAccountController = new ShowAccountController(
+	showAccountUseCase,
+	showAccountValidatorHandler
+);

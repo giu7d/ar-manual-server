@@ -1,10 +1,10 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { UseCase } from "./ShowAccountUseCase";
+import { ShowAccountUseCase } from "./ShowAccountUseCase";
 
-export class Controller {
+export class ShowAccountController {
 	constructor(
-		private useCase: UseCase,
+		private useCase: ShowAccountUseCase,
 		private validatorHandler: RequestHandler
 	) {}
 
@@ -18,8 +18,8 @@ export class Controller {
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
-			const data = request.body;
-			const message = await this.useCase.execute(data);
+			const { accountId } = request.params;
+			const message = await this.useCase.execute({ id: accountId });
 
 			return response.status(200).json(message).send();
 		} catch (error) {

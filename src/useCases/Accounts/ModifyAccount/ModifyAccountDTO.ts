@@ -1,6 +1,4 @@
-import { Account } from "src/entities/Account/Account";
-
-export interface DTO {
+export interface IModifyAccountRequestDTO {
 	id: string;
 	firstName: string;
 	lastName: string;

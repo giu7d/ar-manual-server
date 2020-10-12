@@ -18,8 +18,8 @@ export class DeleteAccountController {
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
-			const { id } = request.params;
-			await this.deleteAccountUseCase.execute({ id });
+			const { accountId } = request.params;
+			await this.deleteAccountUseCase.execute({ id: accountId });
 
 			return response.status(200).send();
 		} catch (error) {

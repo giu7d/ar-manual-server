@@ -1,3 +1,3 @@
-export interface DTO {
+export interface IShowAccountRequestDTO {
 	id: string;
 }
