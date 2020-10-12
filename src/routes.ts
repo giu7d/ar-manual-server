@@ -7,6 +7,7 @@ import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 
 const routes = Router();
 
+// Accounts
 routes.post(
 	"/accounts",
 	(req, res, next) => createAccountController.validator(req, res, next),
@@ -25,5 +26,23 @@ routes.delete(
 	(req, res, next) => deleteAccountController.validator(req, res, next),
 	(req, res) => deleteAccountController.handle(req, res)
 );
+
+// routes.get(
+// 	"/accounts/:id",
+// 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+// 	(req, res, next) => deleteAccountController.validator(req, res, next),
+// 	(req, res) => deleteAccountController.handle(req, res)
+// );
+
+// routes.put(
+// 	"/accounts/:id",
+// 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+// 	(req, res, next) => deleteAccountController.validator(req, res, next),
+// 	(req, res) => deleteAccountController.handle(req, res)
+// );
+
+// Test Benches
+
+// Analysis
 
 export { routes };

@@ -14,7 +14,13 @@ export function extractBearer(token: string) {
 		return token.slice(7, token.length);
 	}
 
-	throw new Error(
-		"Seens that your authentication token is not a Bearer token!"
+	throw new ApplicationError(
+		400,
+		"Authentication token is not a Bearer token!"
 	);
+}
+
+// Error
+export class ApplicationError {
+	constructor(public status: number, public message: string) {}
 }

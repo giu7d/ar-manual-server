@@ -23,7 +23,7 @@ export class CreateAccountController {
 
 			return response.status(201).json(message).send();
 		} catch (error) {
-			return response.status(400).json({
+			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error.",
 			});
 		}

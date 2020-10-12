@@ -1,4 +1,5 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Analysis } from "../Analysis/Analysis";
 
 import { Account } from "./Account";
 
@@ -7,7 +8,7 @@ const toLowercase = {
 	to: (value: string) => value.toLowerCase(),
 };
 
-@Entity()
+@Entity("account")
 export class AccountORM extends Account {
 	@PrimaryColumn({
 		type: "uuid",

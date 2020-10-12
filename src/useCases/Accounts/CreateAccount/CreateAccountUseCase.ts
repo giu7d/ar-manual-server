@@ -10,14 +10,6 @@ export class CreateAccountUseCase {
 	constructor(private accountsRepository: IAccountsRepositories) {}
 
 	async execute(data: ICreateAccountRequestDTO) {
-		const accountAlreadyExists = await this.accountsRepository.findByEmail(
-			data.email
-		);
-
-		if (accountAlreadyExists) {
-			throw new Error("This account already exists.");
-		}
-
 		const salt = uuid();
 		const hashedPassword = hashPassword(data.password, salt);
 

@@ -6,9 +6,9 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "nodemon -L",
-		"build": "tsc --build",
+		"build": "tsc --build tsconfig.production.json",
 		"clear": "rimraf ./build",
-		"typeorm": "tsc ./node_modules/typeorm/cli.js"
+		"typeorm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.7",
@@ -32,6 +32,7 @@
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
 		"pg": "^8.3.3",
 		"reflect-metadata": "^0.1.13",
 		"typeorm": "^0.2.26",

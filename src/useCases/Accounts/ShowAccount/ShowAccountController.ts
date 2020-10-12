@@ -1,11 +1,11 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { AuthenticateAccountUseCase } from "./AuthenticateAccountUseCase";
+import { UseCase } from "./ShowAccountUseCase";
 
-export class AuthenticateAccountController {
+export class Controller {
 	constructor(
-		private authenticateAccountUseCase: AuthenticateAccountUseCase,
-		private authenticateAccountValidator: RequestHandler
+		private useCase: UseCase,
+		private validatorHandler: RequestHandler
 	) {}
 
 	validator(
@@ -13,13 +13,13 @@ export class AuthenticateAccountController {
 		response: Response,
 		next: NextFunction
 	): RequestHandler {
-		return this.authenticateAccountValidator(request, response, next);
+		return this.validatorHandler(request, response, next);
 	}
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
 			const data = request.body;
-			const message = await this.authenticateAccountUseCase.execute(data);
+			const message = await this.useCase.execute(data);
 
 			return response.status(200).json(message).send();
 		} catch (error) {

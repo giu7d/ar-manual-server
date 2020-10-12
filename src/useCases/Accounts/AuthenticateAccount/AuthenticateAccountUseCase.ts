@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
-import { hashPassword } from "src/utils";
+import { ApplicationError, hashPassword } from "src/utils";
 
 import { IAuthenticateAccountRequestDTO } from "./AuthenticateAccountDTO";
 
@@ -13,14 +13,10 @@ export class AuthenticateAccountUseCase {
 	async execute(data: IAuthenticateAccountRequestDTO) {
 		const account = await this.accountsRepository.findByEmail(data.email);
 
-		if (!account) {
-			throw new Error("The user don't exist, check if the email is correct!");
-		}
-
 		const hashedPassword = hashPassword(data.password, account.salt);
 
 		if (account.password !== hashedPassword) {
-			throw new Error("The password is incorrect!");
+			throw new ApplicationError(403, "Password is incorrect!");
 		}
 
 		const jwtPayload = {
