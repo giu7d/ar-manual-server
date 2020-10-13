@@ -7,8 +7,14 @@ export class Warning {
 
 	createdAt: Date;
 
-	constructor(props: Omit<Warning, "id">, id?: string) {
+	constructor(
+		props: Omit<Warning, "id" | "createdAt">,
+		id?: string,
+		createdAt?: Date
+	) {
 		Object.assign(this, props);
+
+		this.createdAt = createdAt || new Date();
 
 		if (!id) {
 			this.id = uuid();

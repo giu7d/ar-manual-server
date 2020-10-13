@@ -1,9 +1,9 @@
-import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
+import { IAccountsRepository } from "src/repositories/Account/IAccountsRepository";
 
 import { IDeleteAccountRequestDTO } from "./DeleteAccountDTO";
 
 export class DeleteAccountUseCase {
-	constructor(private accountsRepository: IAccountsRepositories) {}
+	constructor(private accountsRepository: IAccountsRepository) {}
 
 	async execute(data: IDeleteAccountRequestDTO) {
 		const account = await this.accountsRepository.findById(data.id);

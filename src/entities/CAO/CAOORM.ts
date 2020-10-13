@@ -1,6 +1,6 @@
-import { Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
-import { CAOItemORM } from "src/entities/CAOItem/CAOItemORM";
+import { CAOItem } from "src/entities/CAOItem/CAOItem";
 
 import { CAO } from "./CAO";
 
@@ -12,6 +12,9 @@ export class CAOORM extends CAO {
 	})
 	id: string;
 
-	@OneToMany(() => CAOItemORM, (item) => item.cao)
-	items: CAOItemORM[];
+	@Column()
+	description: string;
+
+	@Column({ type: "json" })
+	items: CAOItem[];
 }

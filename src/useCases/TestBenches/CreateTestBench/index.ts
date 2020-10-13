@@ -1,7 +1,14 @@
-import { Controller } from "./CreateTestBenchController";
-import { UseCase } from "./CreateTestBenchUseCase";
-import { validatorHandler } from "./CreateTestBenchValidator";
+import { PGTestBenchRepository } from "src/repositories/TestBench/implementations/PGTestBenchRepository";
 
-const useCase = new UseCase();
+import { CreateTestBenchController } from "./CreateTestBenchController";
+import { CreateTestBenchUseCase } from "./CreateTestBenchUseCase";
+import { createTestBenchValidatorHandler } from "./CreateTestBenchValidator";
 
-export const controller = new Controller(useCase, validatorHandler);
+const createTestBenchUseCase = new CreateTestBenchUseCase(
+	new PGTestBenchRepository()
+);
+
+export const createTestBenchController = new CreateTestBenchController(
+	createTestBenchUseCase,
+	createTestBenchValidatorHandler
+);

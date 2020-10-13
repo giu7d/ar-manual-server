@@ -4,9 +4,9 @@ import { Account } from "src/entities/Account/Account";
 import { AccountORM } from "src/entities/Account/AccountORM";
 import { ApplicationError } from "src/utils";
 
-import { IAccountsRepositories } from "../IAccountsRepository";
+import { IAccountsRepository } from "../IAccountsRepository";
 
-export class PGAccountRepository implements IAccountsRepositories {
+export class PGAccountRepository implements IAccountsRepository {
 	private repository(): Repository<AccountORM> {
 		return getRepository(AccountORM);
 	}

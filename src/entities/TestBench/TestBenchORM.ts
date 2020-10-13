@@ -26,10 +26,10 @@ export class TestBenchORM extends TestBench {
 	@Column()
 	testBenchSerialNumber: string;
 
-	@OneToMany(() => InstructionORM, (data) => data.id)
+	@OneToMany(() => InstructionORM, (data) => data.testBench, { cascade: true })
 	instructions: InstructionORM[];
 
-	@OneToOne(() => CAOORM)
+	@OneToOne(() => CAOORM, { cascade: true })
 	@JoinColumn()
 	cao: CAOORM;
 }

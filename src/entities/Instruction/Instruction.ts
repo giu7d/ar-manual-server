@@ -10,7 +10,7 @@ export class Instruction {
 
 	step: number;
 
-	nextStep: Instruction;
+	nextStep?: number;
 
 	sources: InstructionSource[];
 

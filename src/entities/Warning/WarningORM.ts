@@ -1,4 +1,4 @@
-import { PrimaryColumn, Column, Entity, ManyToOne } from "typeorm";
+import { PrimaryColumn, Column, Entity, ManyToOne, JoinColumn } from "typeorm";
 
 import { InstructionORM } from "src/entities/Instruction/InstructionORM";
 
@@ -17,7 +17,10 @@ export class WarningORM extends Warning {
 
 	@Column()
 	createdAt: Date;
+	@Column()
+	instructionId: string;
 
 	@ManyToOne(() => InstructionORM, (instruction) => instruction.warnings)
+	@JoinColumn({ name: "instructionId", referencedColumnName: "id" })
 	instruction: InstructionORM;
 }

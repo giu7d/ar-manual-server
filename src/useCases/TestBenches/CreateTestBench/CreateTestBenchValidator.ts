@@ -1,9 +1,47 @@
 import { celebrate, Joi, Segments } from "celebrate";
 
-import { DTO } from "./CreateTestBenchDTO";
+import { ICreateTestBenchRequestDTO } from "./CreateTestBenchDTO";
 
-export const validatorHandler = celebrate({
-	[Segments.BODY]: Joi.object<DTO>({
-		id: Joi.string().required(),
+export const createTestBenchValidatorHandler = celebrate({
+	[Segments.BODY]: Joi.object<ICreateTestBenchRequestDTO>({
+		testBenchSerialNumber: Joi.string().required(),
+		componentSerialNumber: Joi.string().required(),
+		instructions: Joi.array().items(
+			Joi.object({
+				step: Joi.number().required(),
+				nextStep: Joi.number(),
+				description: Joi.string().required(),
+				sources: Joi.array()
+					.items(
+						Joi.object({
+							type: Joi.string().allow("image", "video", "AR").required(),
+							src: Joi.string().required(),
+						})
+					)
+					.required(),
+				warnings: Joi.array()
+					.items(
+						Joi.object({
+							description: Joi.string().required(),
+						})
+					)
+					.required(),
+			})
+		),
+		cao: Joi.object({
+			description: Joi.string().required(),
+			items: Joi.array()
+				.items(
+					Joi.object({
+						description: Joi.string().required(),
+						frequency: Joi.string().required(),
+						series: Joi.string().required(),
+						reforce: Joi.string().required(),
+						method: Joi.string().required(),
+						conformity: Joi.string().required(),
+					})
+				)
+				.required(),
+		}).required(),
 	}),
 });

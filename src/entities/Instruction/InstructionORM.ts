@@ -2,12 +2,13 @@ import {
 	Column,
 	Entity,
 	JoinColumn,
+	ManyToOne,
 	OneToMany,
-	OneToOne,
 	PrimaryColumn,
 } from "typeorm";
 
 import { InstructionSourceORM } from "src/entities/InstructionSource/InstructionSourceORM";
+import { TestBenchORM } from "src/entities/TestBench/TestBenchORM";
 import { WarningORM } from "src/entities/Warning/WarningORM";
 
 import { Instruction } from "./Instruction";
@@ -26,13 +27,25 @@ export class InstructionORM extends Instruction {
 	@Column()
 	step: number;
 
-	@OneToOne(() => InstructionORM)
-	@JoinColumn()
-	nextStep: InstructionORM;
+	@Column({
+		nullable: true,
+	})
+	nextStep?: number;
 
-	@OneToMany(() => InstructionSourceORM, (source) => source.instruction)
+	@OneToMany(() => InstructionSourceORM, (source) => source.instruction, {
+		cascade: true,
+	})
 	sources: InstructionSourceORM[];
 
-	@OneToMany(() => WarningORM, (warning) => warning.instruction)
+	@OneToMany(() => WarningORM, (warning) => warning.instruction, {
+		cascade: true,
+	})
 	warnings: WarningORM[];
+
+	@Column()
+	testBenchId: string;
+
+	@ManyToOne(() => TestBenchORM, (testBench) => testBench.instructions)
+	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
+	testBench: TestBenchORM;
 }

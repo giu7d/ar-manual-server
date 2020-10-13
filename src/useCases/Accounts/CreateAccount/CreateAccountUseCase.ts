@@ -1,13 +1,13 @@
 import { v4 as uuid } from "uuid";
 
 import { Account } from "src/entities/Account/Account";
-import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
+import { IAccountsRepository } from "src/repositories/Account/IAccountsRepository";
 import { hashPassword } from "src/utils";
 
 import { ICreateAccountRequestDTO } from "./CreateAccountDTO";
 
 export class CreateAccountUseCase {
-	constructor(private accountsRepository: IAccountsRepositories) {}
+	constructor(private accountsRepository: IAccountsRepository) {}
 
 	async execute(data: ICreateAccountRequestDTO) {
 		const salt = uuid();

@@ -2,13 +2,13 @@ import { omit } from "lodash";
 import { v4 as uuid } from "uuid";
 
 import { Account } from "src/entities/Account/Account";
-import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
+import { IAccountsRepository } from "src/repositories/Account/IAccountsRepository";
 import { ApplicationError, hashPassword } from "src/utils";
 
 import { IModifyAccountRequestDTO } from "./ModifyAccountDTO";
 
 export class ModifyAccountUseCase {
-	constructor(private accountRepository: IAccountsRepositories) {}
+	constructor(private accountRepository: IAccountsRepository) {}
 
 	async execute(data: IModifyAccountRequestDTO) {
 		const account: Partial<Account> = {

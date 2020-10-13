@@ -1,10 +1,10 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { UseCase } from "./CreateTestBenchUseCase";
+import { CreateTestBenchUseCase } from "./CreateTestBenchUseCase";
 
-export class Controller {
+export class CreateTestBenchController {
 	constructor(
-		private useCase: UseCase,
+		private useCase: CreateTestBenchUseCase,
 		private validatorHandler: RequestHandler
 	) {}
 
@@ -21,8 +21,10 @@ export class Controller {
 			const data = request.body;
 			const message = await this.useCase.execute(data);
 
-			return response.status(200).json(message).send();
+			return response.status(201).json(message).send();
 		} catch (error) {
+			console.log(error);
+
 			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error!",
 			});

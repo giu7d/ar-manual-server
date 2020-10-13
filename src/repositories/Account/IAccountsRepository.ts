@@ -1,6 +1,6 @@
 import { Account } from "src/entities/Account/Account";
 
-export interface IAccountsRepositories {
+export interface IAccountsRepository {
 	save(account: Account): Promise<void>;
 
 	modify(

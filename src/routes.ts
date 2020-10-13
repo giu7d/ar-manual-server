@@ -6,6 +6,7 @@ import { createAccountController } from "src/useCases/Accounts/CreateAccount";
 import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 import { modifyAccountController } from "src/useCases/Accounts/ModifyAccount";
 import { showAccountController } from "src/useCases/Accounts/ShowAccount";
+import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
 
 const routes = Router();
 
@@ -44,6 +45,12 @@ routes.put(
 );
 
 // Test Benches
+routes.post(
+	"/testbenches",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => createTestBenchController.validator(req, res, next),
+	(req, res) => createTestBenchController.handle(req, res)
+);
 
 // Analysis
 

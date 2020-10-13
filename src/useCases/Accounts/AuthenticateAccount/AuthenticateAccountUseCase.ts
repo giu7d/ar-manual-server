@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { IAccountsRepositories } from "src/repositories/Account/IAccountsRepository";
+import { IAccountsRepository } from "src/repositories/Account/IAccountsRepository";
 import { ApplicationError, hashPassword } from "src/utils";
 
 import { IAuthenticateAccountRequestDTO } from "./AuthenticateAccountDTO";
@@ -8,7 +8,7 @@ import { IAuthenticateAccountRequestDTO } from "./AuthenticateAccountDTO";
 const { JWT_SECRET } = process.env;
 
 export class AuthenticateAccountUseCase {
-	constructor(private accountsRepository: IAccountsRepositories) {}
+	constructor(private accountsRepository: IAccountsRepository) {}
 
 	async execute(data: IAuthenticateAccountRequestDTO) {
 		const account = await this.accountsRepository.findByEmail(data.email);
