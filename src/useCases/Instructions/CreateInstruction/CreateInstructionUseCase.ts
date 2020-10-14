@@ -27,5 +27,7 @@ export class CreateInstructionUseCase {
 		await this.instructionRepository.modify(lastInstruction.id, {
 			nextStep: instruction.step,
 		});
+
+		return { id: instruction.id };
 	}
 }
