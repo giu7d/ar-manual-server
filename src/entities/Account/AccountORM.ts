@@ -33,4 +33,9 @@ export class AccountORM extends Account {
 
 	@Column()
 	salt: string;
+
+	@Column({
+		default: true,
+	})
+	isActive: boolean;
 }

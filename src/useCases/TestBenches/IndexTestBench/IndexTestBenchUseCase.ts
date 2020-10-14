@@ -1,7 +1,11 @@
-import { DTO } from "./IndexTestBenchDTO";
+import { ITestBenchRepository } from "src/repositories/TestBench/ITestBenchRepository";
 
-export class UseCase {
-	async execute(data: DTO) {
-		return data;
+export class IndexTestBenchUseCase {
+	constructor(private testBenchRepository: ITestBenchRepository) {}
+
+	async execute() {
+		const testBenches = this.testBenchRepository.find();
+
+		return testBenches;
 	}
 }

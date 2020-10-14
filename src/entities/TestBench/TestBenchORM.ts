@@ -26,6 +26,11 @@ export class TestBenchORM extends TestBench {
 	@Column()
 	testBenchSerialNumber: string;
 
+	@Column({
+		default: true,
+	})
+	isActive: boolean;
+
 	@OneToMany(() => InstructionORM, (data) => data.testBench, { cascade: true })
 	instructions: InstructionORM[];
 

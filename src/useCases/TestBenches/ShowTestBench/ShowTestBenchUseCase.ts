@@ -1,7 +1,13 @@
-import { DTO } from "./ShowTestBenchDTO";
+import { ITestBenchRepository } from "src/repositories/TestBench/ITestBenchRepository";
 
-export class UseCase {
-	async execute(data: DTO) {
-		return data;
+import { IShowTestBenchRequestDTO } from "./ShowTestBenchDTO";
+
+export class ShowTestBenchUseCase {
+	constructor(private testBenchRepository: ITestBenchRepository) {}
+
+	async execute(data: IShowTestBenchRequestDTO) {
+		const account = await this.testBenchRepository.findById(data.testBenchId);
+
+		return account;
 	}
 }

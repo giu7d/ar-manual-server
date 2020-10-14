@@ -21,6 +21,8 @@ export function extractBearer(token: string) {
 }
 
 // Error
-export class ApplicationError {
-	constructor(public status: number, public message: string) {}
+export class ApplicationError extends Error {
+	constructor(public status: number, public message: string) {
+		super();
+	}
 }

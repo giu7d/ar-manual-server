@@ -7,6 +7,10 @@ import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 import { modifyAccountController } from "src/useCases/Accounts/ModifyAccount";
 import { showAccountController } from "src/useCases/Accounts/ShowAccount";
 import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
+import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBench";
+import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";
+import { modifyTestBenchController } from "src/useCases/TestBenches/ModifyTestBench";
+import { showTestBenchController } from "src/useCases/TestBenches/ShowTestBench";
 
 const routes = Router();
 
@@ -50,6 +54,34 @@ routes.post(
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => createTestBenchController.validator(req, res, next),
 	(req, res) => createTestBenchController.handle(req, res)
+);
+
+routes.get(
+	"/testbenches",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => indexTestBenchController.validator(req, res, next),
+	(req, res) => indexTestBenchController.handle(req, res)
+);
+
+routes.get(
+	"/testbenches/:testBenchId",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => showTestBenchController.validator(req, res, next),
+	(req, res) => showTestBenchController.handle(req, res)
+);
+
+routes.put(
+	"/testbenches/:testBenchId",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => modifyTestBenchController.validator(req, res, next),
+	(req, res) => modifyTestBenchController.handle(req, res)
+);
+
+routes.delete(
+	"/testbenches/:testBenchId",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => deleteTestBenchController.validator(req, res, next),
+	(req, res) => deleteTestBenchController.handle(req, res)
 );
 
 // Analysis

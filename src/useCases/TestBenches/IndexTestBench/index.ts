@@ -1,7 +1,14 @@
-import { Controller } from "./IndexTestBenchController";
-import { UseCase } from "./IndexTestBenchUseCase";
-import { validatorHandler } from "./IndexTestBenchValidator";
+import { PGTestBenchRepository } from "src/repositories/TestBench/implementations/PGTestBenchRepository";
 
-const useCase = new UseCase();
+import { IndexTestBenchController } from "./IndexTestBenchController";
+import { IndexTestBenchUseCase } from "./IndexTestBenchUseCase";
+import { indexTestBenchValidatorHandler } from "./IndexTestBenchValidator";
 
-export const controller = new Controller(useCase, validatorHandler);
+const indexTestBenchUseCase = new IndexTestBenchUseCase(
+	new PGTestBenchRepository()
+);
+
+export const indexTestBenchController = new IndexTestBenchController(
+	indexTestBenchUseCase,
+	indexTestBenchValidatorHandler
+);

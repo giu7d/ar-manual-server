@@ -13,8 +13,16 @@ export class Account {
 
 	salt: string;
 
-	constructor(props: Omit<Account, "id">, id?: string) {
+	isActive: boolean;
+
+	constructor(
+		props: Omit<Account, "id" | "isActive">,
+		id?: string,
+		isActive?: boolean
+	) {
 		Object.assign(this, props);
+
+		this.isActive = isActive || true;
 
 		if (!id) {
 			this.id = uuid();

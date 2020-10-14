@@ -1,8 +1,9 @@
 import { celebrate, Joi, Segments } from "celebrate";
 
-// import { IModifyAccountRequestDTO } from "./ModifyAccountDTO";
-
 export const modifyAccountValidatorHandler = celebrate({
+	[Segments.HEADERS]: Joi.object({
+		authorization: Joi.string().required(),
+	}).unknown(),
 	[Segments.PARAMS]: Joi.object({
 		accountId: Joi.string().required(),
 	}),

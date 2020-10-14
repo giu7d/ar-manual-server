@@ -14,8 +14,16 @@ export class TestBench {
 
 	instructions: Instruction[];
 
-	constructor(props: Omit<TestBench, "id">, id?: string) {
+	isActive: boolean;
+
+	constructor(
+		props: Omit<TestBench, "id" | "isActive">,
+		id?: string,
+		isActive?: boolean
+	) {
 		Object.assign(this, props);
+
+		this.isActive = isActive || true;
 
 		if (!id) {
 			this.id = uuid();

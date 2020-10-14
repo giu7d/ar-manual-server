@@ -19,7 +19,11 @@ export class PGAccountRepository implements IAccountsRepository {
 		await this.repository().save(account);
 	}
 
-	async modify(id: string, account: Partial<Omit<Account, "id" | "email">>) {
+	async modify(
+		id: string,
+		account: Partial<Omit<Account, "id" | "email">>,
+		isActive = true
+	) {
 		if (!id) {
 			throw new ApplicationError(400, "Id needs to be passed!");
 		}
@@ -28,7 +32,7 @@ export class PGAccountRepository implements IAccountsRepository {
 			throw new ApplicationError(400, "Account needs to be passed!");
 		}
 
-		await this.repository().update({ id }, account);
+		await this.repository().update({ id, isActive }, account);
 	}
 
 	async delete(id: string) {
@@ -36,11 +40,11 @@ export class PGAccountRepository implements IAccountsRepository {
 			throw new ApplicationError(400, "Id needs to be passed!");
 		}
 
-		await this.repository().delete({ id });
+		await this.repository().update({ id, isActive: true }, { isActive: false });
 	}
 
-	async findByEmail(email: string) {
-		const account = await this.repository().findOne({ email });
+	async findByEmail(email: string, isActive = true) {
+		const account = await this.repository().findOne({ email, isActive });
 
 		if (!account) {
 			throw new ApplicationError(404, "This account don't exist!");
@@ -49,8 +53,8 @@ export class PGAccountRepository implements IAccountsRepository {
 		return account;
 	}
 
-	async findById(id: string) {
-		const account = await this.repository().findOne({ id });
+	async findById(id: string, isActive = true) {
+		const account = await this.repository().findOne({ id, isActive });
 
 		if (!account) {
 			throw new ApplicationError(404, "This account don't exist!");

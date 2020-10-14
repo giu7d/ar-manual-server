@@ -5,12 +5,13 @@ export interface IAccountsRepository {
 
 	modify(
 		id: string,
-		account: Partial<Omit<Account, "id" | "email">>
+		account: Partial<Omit<Account, "id" | "email">>,
+		isActive?: boolean
 	): Promise<void>;
 
 	delete(id: string): Promise<void>;
 
-	findByEmail(email: string): Promise<Account>;
+	findByEmail(email: string, isActive?: boolean): Promise<Account>;
 
-	findById(id: string): Promise<Account>;
+	findById(id: string, isActive?: boolean): Promise<Account>;
 }

@@ -1,10 +1,10 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { DeleteTestBenchUseCase } from "./DeleteTestBenchUseCase";
+import { ModifyTestBenchUseCase } from "./ModifyTestBenchUseCase";
 
-export class DeleteTestBenchController {
+export class ModifyTestBenchController {
 	constructor(
-		private useCase: DeleteTestBenchUseCase,
+		private useCase: ModifyTestBenchUseCase,
 		private validatorHandler: RequestHandler
 	) {}
 
@@ -19,7 +19,8 @@ export class DeleteTestBenchController {
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
 			const { testBenchId } = request.params;
-			await this.useCase.execute({ testBenchId });
+			const data = request.body;
+			await this.useCase.execute({ testBenchId, ...data });
 
 			return response.status(200).send();
 		} catch (error) {

@@ -1,3 +1,3 @@
-export interface DTO {
-	id: string;
+export interface IShowTestBenchRequestDTO {
+	testBenchId: string;
 }

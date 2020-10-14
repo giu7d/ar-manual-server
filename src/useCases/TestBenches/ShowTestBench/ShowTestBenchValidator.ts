@@ -1,9 +1,12 @@
 import { celebrate, Joi, Segments } from "celebrate";
 
-import { DTO } from "./ShowTestBenchDTO";
+import { IShowTestBenchRequestDTO } from "./ShowTestBenchDTO";
 
-export const validatorHandler = celebrate({
-	[Segments.BODY]: Joi.object<DTO>({
-		id: Joi.string().required(),
+export const showTestBenchValidatorHandler = celebrate({
+	[Segments.HEADERS]: Joi.object({
+		authorization: Joi.string().required(),
+	}).unknown(),
+	[Segments.PARAMS]: Joi.object<IShowTestBenchRequestDTO>({
+		testBenchId: Joi.string().required(),
 	}),
 });
