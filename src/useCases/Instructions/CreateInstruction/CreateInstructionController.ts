@@ -1,10 +1,10 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { CreateTestBenchUseCase } from "./CreateTestBenchUseCase";
+import { CreateInstructionUseCase } from "./CreateInstructionUseCase";
 
-export class CreateTestBenchController {
+export class CreateInstructionController {
 	constructor(
-		private useCase: CreateTestBenchUseCase,
+		private useCase: CreateInstructionUseCase,
 		private validatorHandler: RequestHandler
 	) {}
 
@@ -18,13 +18,16 @@ export class CreateTestBenchController {
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
+			const { testBenchId } = request.params;
 			const data = request.body;
-			const message = await this.useCase.execute(data);
+
+			const message = await this.useCase.execute({ testBenchId, ...data });
 
 			return response.status(201).json(message).send();
 		} catch (error) {
 			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error!",
+				stack: error.stack || "No error stack available!",
 			});
 		}
 	}

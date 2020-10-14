@@ -6,6 +6,7 @@ import { createAccountController } from "src/useCases/Accounts/CreateAccount";
 import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 import { modifyAccountController } from "src/useCases/Accounts/ModifyAccount";
 import { showAccountController } from "src/useCases/Accounts/ShowAccount";
+import { createInstructionController } from "src/useCases/Instructions/CreateInstruction";
 import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
 import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBench";
 import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";
@@ -82,6 +83,14 @@ routes.delete(
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => deleteTestBenchController.validator(req, res, next),
 	(req, res) => deleteTestBenchController.handle(req, res)
+);
+
+// Test Benches Instructions
+routes.post(
+	"/testbenches/:testBenchId/instructions",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => createInstructionController.validator(req, res, next),
+	(req, res) => createInstructionController.handle(req, res)
 );
 
 // Analysis
