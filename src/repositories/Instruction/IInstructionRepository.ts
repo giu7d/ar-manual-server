@@ -6,4 +6,5 @@ export interface IInstructionRepository {
 		id: string,
 		instruction: Partial<Omit<Instruction, "id">>
 	): Promise<void>;
+	findById(id: string): Promise<Instruction>;
 }

@@ -37,4 +37,14 @@ export class PGInstructionRepository implements IInstructionRepository {
 
 		await this.repository().update({ id }, instruction);
 	}
+
+	async findById(id: string) {
+		if (!id) {
+			throw new ApplicationError(400, "Instruction ID needs to be passed!");
+		}
+
+		const instruction = await this.repository().findOne({ id });
+
+		return instruction;
+	}
 }
