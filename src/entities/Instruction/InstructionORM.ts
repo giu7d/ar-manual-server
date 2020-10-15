@@ -30,7 +30,7 @@ export class InstructionORM extends Instruction {
 	@Column({
 		nullable: true,
 	})
-	nextStep?: number;
+	nextInstructionId?: string;
 
 	@OneToMany(() => InstructionSourceORM, (source) => source.instruction, {
 		cascade: true,

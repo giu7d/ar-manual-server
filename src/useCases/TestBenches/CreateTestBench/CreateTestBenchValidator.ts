@@ -13,7 +13,6 @@ export const createTestBenchValidatorHandler = celebrate({
 			.items(
 				Joi.object({
 					step: Joi.number().required(),
-					nextStep: Joi.number(),
 					description: Joi.string().required(),
 					sources: Joi.array()
 						.items(

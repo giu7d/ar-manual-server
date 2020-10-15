@@ -15,6 +15,7 @@ export const modifyInstructionValidatorHandler = celebrate({
 	[Segments.BODY]: Joi.object<
 		Omit<IModifyInstructionRequestDTO, "testBenchId" | "instructionId">
 	>({
-		description: Joi.string().required(),
+		step: Joi.number(),
+		description: Joi.string(),
 	}),
 });

@@ -12,7 +12,7 @@ export class InstructionFactory {
 			sources: instruction.sources.map((src) => new InstructionSource(src)),
 			warnings: instruction.warnings.map((warning) => new Warning(warning)),
 			step,
-			nextStep: undefined,
+			nextInstructionId: undefined,
 		});
 
 		return instantiatedInstructions;

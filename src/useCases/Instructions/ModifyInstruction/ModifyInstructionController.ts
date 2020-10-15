@@ -21,13 +21,13 @@ export class ModifyInstructionController {
 			const { testBenchId, instructionId } = request.params;
 			const data = request.body;
 
-			await this.useCase.execute({
+			const message = await this.useCase.execute({
 				testBenchId,
 				instructionId,
 				...data,
 			});
 
-			return response.status(200).send();
+			return response.status(200).json(message).send();
 		} catch (error) {
 			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error!",

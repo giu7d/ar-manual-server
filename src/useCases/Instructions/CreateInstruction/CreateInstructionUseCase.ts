@@ -11,12 +11,11 @@ export class CreateInstructionUseCase {
 	) {}
 
 	async execute(data: ICreateInstructionRequestDTO) {
-		const {
-			instructions,
-			...testbench
-		} = await this.testBenchRepository.findById(data.testBenchId);
+		const testbench = await this.testBenchRepository.findById(data.testBenchId);
 
-		const lastInstruction = instructions.find(({ nextStep }) => !nextStep);
+		const lastInstruction = testbench.instructions.find(
+			({ nextInstructionId }) => !nextInstructionId
+		);
 
 		const instruction = InstructionFactory.create(
 			lastInstruction.step + 1,
@@ -25,7 +24,7 @@ export class CreateInstructionUseCase {
 
 		await this.instructionRepository.save(testbench.id, instruction);
 		await this.instructionRepository.modify(lastInstruction.id, {
-			nextStep: instruction.step,
+			nextInstructionId: instruction.id,
 		});
 
 		return { id: instruction.id };

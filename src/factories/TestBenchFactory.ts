@@ -8,16 +8,27 @@ import { ICreateTestBenchRequestDTO } from "src/useCases/TestBenches/CreateTestB
 
 export class TestBenchFactory {
 	static create({ instructions, cao, ...rest }: ICreateTestBenchRequestDTO) {
-		const instantiatedInstructions = instructions.map(
-			({ sources, warnings, nextStep, ...rest }) => {
-				return new Instruction({
+		let lastInstructionId = undefined;
+		let lastInstructionStep = instructions.length;
+
+		const instantiatedInstructions = instructions
+			.sort((present, next) => {
+				return next.step - present.step;
+			})
+			.map(({ sources, warnings, ...rest }) => {
+				const instruction = new Instruction({
 					...rest,
+					step: lastInstructionStep,
 					sources: sources.map((src) => new InstructionSource(src)),
 					warnings: warnings.map((warning) => new Warning(warning)),
-					nextStep: nextStep || undefined,
+					nextInstructionId: lastInstructionId,
 				});
-			}
-		);
+
+				lastInstructionId = instruction.id;
+				lastInstructionStep--;
+
+				return instruction;
+			});
 
 		const instantiatedCAO = new CAO({
 			...cao,

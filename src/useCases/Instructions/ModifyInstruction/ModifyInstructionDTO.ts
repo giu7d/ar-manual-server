@@ -1,5 +1,6 @@
 export interface IModifyInstructionRequestDTO {
 	testBenchId: string;
 	instructionId: string;
-	description: string;
+	step?: number;
+	description?: string;
 }

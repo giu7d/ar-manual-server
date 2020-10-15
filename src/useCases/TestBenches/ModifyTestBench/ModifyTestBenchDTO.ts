@@ -1,8 +1,5 @@
-import { TestBench } from "src/entities/TestBench/TestBench";
-
-export interface IModifyTestBenchRequestDTO
-	extends Partial<
-		Pick<TestBench, "componentSerialNumber" | "testBenchSerialNumber">
-	> {
+export interface IModifyTestBenchRequestDTO {
 	testBenchId: string;
+	componentSerialNumber?: string;
+	testBenchSerialNumber?: string;
 }

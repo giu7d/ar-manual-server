@@ -6,7 +6,6 @@ export interface ICreateTestBenchRequestDTO {
 	instructions: {
 		description: string;
 		step: number;
-		nextStep: number;
 		sources: {
 			type: "image" | "video" | "AR";
 			src: string;
