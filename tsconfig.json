@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
+		"declaration": true,
+		"emitDeclarationOnly": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"declaration": true,
 		"target": "es2017",
 		"module": "commonjs",
 		"lib": ["ES2020"],

@@ -1,0 +1,37 @@
+{
+	"presets": ["@babel/preset-env", "@babel/preset-typescript"],
+	"plugins": [
+		"babel-plugin-transform-typescript-metadata",
+		"@babel/plugin-transform-runtime",
+		[
+			"@babel/plugin-proposal-decorators",
+			{
+				"legacy": true
+			}
+		],
+		[
+			"@babel/plugin-proposal-class-properties",
+			{
+				"loose": true
+			}
+		],
+		"@babel/proposal-object-rest-spread",
+		[
+			"module-resolver",
+			{
+				"root": ["."],
+				"alias": {
+					"src": "./src"
+				}
+			}
+		]
+	],
+	"ignore": [
+		"**/*.spec.ts",
+		"**/*.spec.js",
+		"**/*.test.ts",
+		"**/*.test.js",
+		"src/__mocks__/**",
+		"src/__helpers__/**"
+	]
+}
