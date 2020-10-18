@@ -20,7 +20,7 @@ export class CreateAnalysisController {
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
-			const { authorization, testbenchid } = request.body;
+			const { authorization, testbenchid } = request.headers;
 			const account = extractBearerTokenData(authorization);
 			const data = request.body;
 
