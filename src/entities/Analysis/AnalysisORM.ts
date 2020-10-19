@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
+import {
+	Column,
+	Entity,
+	JoinColumn,
+	ManyToMany,
+	OneToMany,
+	PrimaryColumn,
+} from "typeorm";
 
 import { AccountORM } from "src/entities/Account/AccountORM";
 import { AnalysisStepORM } from "src/entities/AnalysisStep/AnalysisStepORM";
@@ -17,10 +24,14 @@ export class AnalysisORM extends Analysis {
 	@Column()
 	status: "approved" | "failure";
 
-	@ManyToMany(() => TestBenchORM)
+	@Column()
+	testBenchId: string;
+
+	@ManyToMany(() => TestBenchORM, (testBench) => testBench.analysis)
+	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
 	testBench: TestBenchORM;
 
-	@OneToMany(() => AnalysisStepORM, (data) => data.analysis)
+	@OneToMany(() => AnalysisStepORM, (data) => data.analysis, { cascade: true })
 	steps: AnalysisStepORM[];
 
 	@Column()
@@ -29,6 +40,10 @@ export class AnalysisORM extends Analysis {
 	@Column()
 	finishedAt: Date;
 
-	@ManyToMany(() => AccountORM)
+	@Column()
+	accountId: string;
+
+	@ManyToMany(() => AccountORM, (account) => account.analysis)
+	@JoinColumn({ name: "accountId", referencedColumnName: "id" })
 	account: AccountORM;
 }

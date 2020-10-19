@@ -2,11 +2,13 @@ import {
 	Column,
 	Entity,
 	JoinColumn,
+	ManyToMany,
 	OneToMany,
 	OneToOne,
 	PrimaryColumn,
 } from "typeorm";
 
+import { AnalysisORM } from "src/entities/Analysis/AnalysisORM";
 import { CAOORM } from "src/entities/CAO/CAOORM";
 import { InstructionORM } from "src/entities/Instruction/InstructionORM";
 
@@ -37,4 +39,7 @@ export class TestBenchORM extends TestBench {
 	@OneToOne(() => CAOORM, { cascade: true })
 	@JoinColumn()
 	cao: CAOORM;
+
+	@ManyToMany(() => AnalysisORM, (analysis) => analysis.testBench)
+	analysis: AnalysisORM[];
 }

@@ -7,6 +7,7 @@ import { deleteAccountController } from "src/useCases/Accounts/DeleteAccount";
 import { modifyAccountController } from "src/useCases/Accounts/ModifyAccount";
 import { showAccountController } from "src/useCases/Accounts/ShowAccount";
 import { createAnalysisController } from "src/useCases/Analysis/CreateAnalysis";
+import { indexAnalysisController } from "src/useCases/Analysis/IndexAnalysis";
 import { createInstructionController } from "src/useCases/Instructions/CreateInstruction";
 import { modifyInstructionController } from "src/useCases/Instructions/ModifyInstruction";
 import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
@@ -108,6 +109,13 @@ routes.post(
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => createAnalysisController.validator(req, res, next),
 	(req, res) => createAnalysisController.handle(req, res)
+);
+
+routes.get(
+	"/analysis",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => indexAnalysisController.validator(req, res, next),
+	(req, res) => indexAnalysisController.handle(req, res)
 );
 
 export { routes };

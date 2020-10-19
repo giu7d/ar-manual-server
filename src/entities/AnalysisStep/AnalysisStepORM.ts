@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 
 import { AnalysisORM } from "src/entities//Analysis/AnalysisORM";
 import { InstructionORM } from "src/entities/Instruction/InstructionORM";
@@ -15,9 +15,6 @@ export class AnalysisStepORM extends AnalysisStep {
 
 	@Column()
 	status: "approved" | "failure";
-
-	@ManyToMany(() => InstructionORM)
-	instruction: InstructionORM;
 
 	@Column({
 		type: "json",
@@ -36,4 +33,7 @@ export class AnalysisStepORM extends AnalysisStep {
 
 	@ManyToOne(() => AnalysisORM, (analysis) => analysis.steps)
 	analysis: AnalysisORM;
+
+	@ManyToOne(() => InstructionORM, (instruction) => instruction.analysisStep)
+	instruction: InstructionORM;
 }

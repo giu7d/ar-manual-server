@@ -7,6 +7,7 @@ import {
 	PrimaryColumn,
 } from "typeorm";
 
+import { AnalysisStepORM } from "src/entities/AnalysisStep/AnalysisStepORM";
 import { InstructionSourceORM } from "src/entities/InstructionSource/InstructionSourceORM";
 import { TestBenchORM } from "src/entities/TestBench/TestBenchORM";
 import { WarningORM } from "src/entities/Warning/WarningORM";
@@ -48,4 +49,7 @@ export class InstructionORM extends Instruction {
 	@ManyToOne(() => TestBenchORM, (testBench) => testBench.instructions)
 	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
 	testBench: TestBenchORM;
+
+	@OneToMany(() => AnalysisStepORM, (step) => step.instruction)
+	analysisStep: AnalysisStepORM[];
 }

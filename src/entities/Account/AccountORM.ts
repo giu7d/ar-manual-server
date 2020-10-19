@@ -1,4 +1,6 @@
-import { Entity, PrimaryColumn, Column } from "typeorm";
+import { Entity, PrimaryColumn, Column, ManyToMany } from "typeorm";
+
+import { AnalysisORM } from "src/entities/Analysis/AnalysisORM";
 
 import { Account } from "./Account";
 
@@ -38,4 +40,7 @@ export class AccountORM extends Account {
 		default: true,
 	})
 	isActive: boolean;
+
+	@ManyToMany(() => AnalysisORM, (analysis) => analysis.account)
+	analysis: AnalysisORM[];
 }
