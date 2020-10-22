@@ -9,6 +9,7 @@ export const createTestBenchValidatorHandler = celebrate({
 	[Segments.BODY]: Joi.object<ICreateTestBenchRequestDTO>({
 		testBenchSerialNumber: Joi.string().required(),
 		componentSerialNumber: Joi.string().required(),
+		thumbnailSrc: Joi.string().uri().required(),
 		instructions: Joi.array().items(
 			Joi.object({
 				step: Joi.number().required(),

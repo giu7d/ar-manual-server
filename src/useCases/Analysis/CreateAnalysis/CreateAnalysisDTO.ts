@@ -10,7 +10,7 @@ export interface ICreateAnalysisRequestDTO {
 		startedAt: Date;
 		finishedAt: Date;
 		failure?: {
-			description: string;
+			description?: string;
 			src: string[];
 			caoItemId: string;
 		};

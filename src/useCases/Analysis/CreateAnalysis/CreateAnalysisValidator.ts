@@ -22,8 +22,8 @@ export const createAnalysisValidatorHandler = celebrate({
 					finishedAt: Joi.date().required(),
 					failure: Joi.object({
 						caoItemId: Joi.string().required(),
-						description: Joi.string().required(),
 						src: Joi.array().items(Joi.string().required()).required(),
+						description: Joi.string(),
 					}),
 				})
 			)

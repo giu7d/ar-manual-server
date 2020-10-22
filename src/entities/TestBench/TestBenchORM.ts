@@ -28,6 +28,9 @@ export class TestBenchORM extends TestBench {
 	@Column()
 	testBenchSerialNumber: string;
 
+	@Column()
+	thumbnailSrc: string;
+
 	@Column({
 		default: true,
 	})

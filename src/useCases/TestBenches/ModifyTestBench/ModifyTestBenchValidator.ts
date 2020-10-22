@@ -14,5 +14,6 @@ export const modifyTestBenchValidatorHandler = celebrate({
 	[Segments.BODY]: Joi.object<Omit<IModifyTestBenchRequestDTO, "testBenchId">>({
 		testBenchSerialNumber: Joi.string(),
 		componentSerialNumber: Joi.string(),
+		thumbnailSrc: Joi.string().uri(),
 	}),
 });

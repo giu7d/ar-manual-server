@@ -10,6 +10,8 @@ export class TestBench {
 
 	componentSerialNumber: string;
 
+	thumbnailSrc: string;
+
 	cao: CAO;
 
 	instructions: Instruction[];

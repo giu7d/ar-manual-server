@@ -10,7 +10,7 @@ export class AnalysisStep {
 	instruction: Instruction;
 
 	failure?: {
-		description: string;
+		description?: string;
 		src: string[];
 		caoItemId: string;
 	};

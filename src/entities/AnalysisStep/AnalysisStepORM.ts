@@ -21,7 +21,7 @@ export class AnalysisStepORM extends AnalysisStep {
 		nullable: true,
 	})
 	failure?: {
-		description: string;
+		description?: string;
 		src: string[];
 		caoItemId: string;
 	};
