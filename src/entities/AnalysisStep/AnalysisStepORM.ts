@@ -18,6 +18,7 @@ export class AnalysisStepORM extends AnalysisStep {
 
 	@Column({
 		type: "json",
+		nullable: true,
 	})
 	failure?: {
 		description: string;
