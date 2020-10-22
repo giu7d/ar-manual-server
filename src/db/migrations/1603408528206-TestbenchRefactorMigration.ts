@@ -1,18 +1,18 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class ThumbnailDefaultValueMigration1603408259256
+export class TestbenchRefactorMigration1603408528206
 	implements MigrationInterface {
-	name = "ThumbnailDefaultValueMigration1603408259256";
+	name = "TestbenchRefactorMigration1603408528206";
 
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.query(
-			`ALTER TABLE "testbench" ALTER COLUMN "thumbnailSrc" SET DEFAULT 'placeholder-value'`
+			`ALTER TABLE "testbench" ADD "thumbnailSrc" character varying NOT NULL DEFAULT 'placeholder-value'`
 		);
 	}
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.query(
-			`ALTER TABLE "testbench" ALTER COLUMN "thumbnailSrc" DROP DEFAULT`
+			`ALTER TABLE "testbench" DROP COLUMN "thumbnailSrc"`
 		);
 	}
 }
