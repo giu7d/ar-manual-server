@@ -23,12 +23,10 @@ export const createInstructionValidatorHandler = celebrate({
 				})
 			)
 			.required(),
-		warnings: Joi.array()
-			.items(
-				Joi.object({
-					description: Joi.string().required(),
-				})
-			)
-			.required(),
+		warnings: Joi.array().items(
+			Joi.object({
+				description: Joi.string().required(),
+			})
+		),
 	}),
 });
