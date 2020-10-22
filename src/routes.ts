@@ -15,6 +15,7 @@ import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBe
 import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";
 import { modifyTestBenchController } from "src/useCases/TestBenches/ModifyTestBench";
 import { showTestBenchController } from "src/useCases/TestBenches/ShowTestBench";
+import { uploadFilesController } from "src/useCases/UploadFiles";
 
 const routes = Router();
 
@@ -116,6 +117,13 @@ routes.get(
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => indexAnalysisController.validator(req, res, next),
 	(req, res) => indexAnalysisController.handle(req, res)
+);
+
+// Upload Files
+routes.post(
+	"/files",
+	(req, res, next) => uploadFilesController.validate(req, res, next),
+	(req, res) => uploadFilesController.handle(req, res)
 );
 
 export { routes };

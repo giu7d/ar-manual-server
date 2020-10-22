@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
-import { Account } from "./entities/Account/Account";
+import { Account } from "src/entities/Account/Account";
 
 const { JWT_SECRET } = process.env;
 
