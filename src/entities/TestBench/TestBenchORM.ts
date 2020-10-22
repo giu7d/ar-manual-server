@@ -28,7 +28,9 @@ export class TestBenchORM extends TestBench {
 	@Column()
 	testBenchSerialNumber: string;
 
-	@Column()
+	@Column({
+		default: "placeholder-value",
+	})
 	thumbnailSrc: string;
 
 	@Column({
