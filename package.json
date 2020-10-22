@@ -11,7 +11,8 @@
 		"build:ts": "tsc --build tsconfig.production.json",
 		"build:babel": "babel --extensions \".ts,.js\" src -d build",
 		"clear": "rimraf ./build",
-		"typeorm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+		"typeorm": "node -r ts-node/register -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+		"typeorm:prod": "node ./node_modules/typeorm/cli.js"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.12.1",
