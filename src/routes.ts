@@ -122,6 +122,7 @@ routes.get(
 // Upload Files
 routes.post(
 	"/files",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => uploadFilesController.validate(req, res, next),
 	(req, res) => uploadFilesController.handle(req, res)
 );
