@@ -3,7 +3,7 @@ export interface ICreateTestBenchRequestDTO {
 
 	componentSerialNumber: string;
 
-	instructions: {
+	instructions?: {
 		description: string;
 		step: number;
 		sources: {

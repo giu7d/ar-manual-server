@@ -18,14 +18,17 @@ export class CreateInstructionUseCase {
 		);
 
 		const instruction = InstructionFactory.create(
-			lastInstruction.step + 1,
+			lastInstruction ? lastInstruction.step + 1 : 1,
 			data
 		);
 
 		await this.instructionRepository.save(testbench.id, instruction);
-		await this.instructionRepository.modify(lastInstruction.id, {
-			nextInstructionId: instruction.id,
-		});
+
+		if (lastInstruction) {
+			await this.instructionRepository.modify(lastInstruction.id, {
+				nextInstructionId: instruction.id,
+			});
+		}
 
 		return { id: instruction.id };
 	}

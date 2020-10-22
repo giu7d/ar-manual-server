@@ -7,7 +7,11 @@ import { Warning } from "src/entities/Warning/Warning";
 import { ICreateTestBenchRequestDTO } from "src/useCases/TestBenches/CreateTestBench/CreateTestBenchDTO";
 
 export class TestBenchFactory {
-	static create({ instructions, cao, ...rest }: ICreateTestBenchRequestDTO) {
+	static create({
+		instructions = [],
+		cao,
+		...rest
+	}: ICreateTestBenchRequestDTO) {
 		let lastInstructionId = undefined;
 		let lastInstructionStep = instructions.length;
 
