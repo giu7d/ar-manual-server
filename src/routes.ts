@@ -10,6 +10,7 @@ import { createAnalysisController } from "src/useCases/Analysis/CreateAnalysis";
 import { indexAnalysisController } from "src/useCases/Analysis/IndexAnalysis";
 import { createInstructionController } from "src/useCases/Instructions/CreateInstruction";
 import { modifyInstructionController } from "src/useCases/Instructions/ModifyInstruction";
+import { showStatisticsController } from "src/useCases/Statistics/ShowStatisticsStatistics";
 import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
 import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBench";
 import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";
@@ -125,6 +126,14 @@ routes.post(
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
 	(req, res, next) => uploadFilesController.validate(req, res, next),
 	(req, res) => uploadFilesController.handle(req, res)
+);
+
+// Statistics
+routes.get(
+	"/testbenches/:testBenchId/statistics",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => showStatisticsController.validator(req, res, next),
+	(req, res) => showStatisticsController.handle(req, res)
 );
 
 export { routes };

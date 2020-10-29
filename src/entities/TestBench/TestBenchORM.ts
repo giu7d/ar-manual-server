@@ -2,7 +2,6 @@ import {
 	Column,
 	Entity,
 	JoinColumn,
-	ManyToMany,
 	OneToMany,
 	OneToOne,
 	PrimaryColumn,
@@ -45,6 +44,6 @@ export class TestBenchORM extends TestBench {
 	@JoinColumn()
 	cao: CAOORM;
 
-	@ManyToMany(() => AnalysisORM, (analysis) => analysis.testBench)
+	@OneToMany(() => AnalysisORM, (analysis) => analysis.testBench)
 	analysis: AnalysisORM[];
 }

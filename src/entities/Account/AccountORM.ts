@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
 
 import { AnalysisORM } from "src/entities/Analysis/AnalysisORM";
 
@@ -41,6 +41,6 @@ export class AccountORM extends Account {
 	})
 	isActive: boolean;
 
-	@ManyToMany(() => AnalysisORM, (analysis) => analysis.account)
+	@OneToMany(() => AnalysisORM, (analysis) => analysis.account)
 	analysis: AnalysisORM[];
 }

@@ -3,6 +3,7 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToMany,
+	ManyToOne,
 	OneToMany,
 	PrimaryColumn,
 } from "typeorm";
@@ -27,7 +28,7 @@ export class AnalysisORM extends Analysis {
 	@Column()
 	testBenchId: string;
 
-	@ManyToMany(() => TestBenchORM, (testBench) => testBench.analysis)
+	@ManyToOne(() => TestBenchORM, (testBench) => testBench.analysis)
 	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
 	testBench: TestBenchORM;
 
@@ -43,7 +44,7 @@ export class AnalysisORM extends Analysis {
 	@Column()
 	accountId: string;
 
-	@ManyToMany(() => AccountORM, (account) => account.analysis)
+	@ManyToOne(() => AccountORM, (account) => account.analysis)
 	@JoinColumn({ name: "accountId", referencedColumnName: "id" })
 	account: AccountORM;
 }

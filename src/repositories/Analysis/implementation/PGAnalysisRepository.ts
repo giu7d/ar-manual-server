@@ -16,11 +16,7 @@ export class PGAnalysisRepository implements IAnalysisRepository {
 			throw new ApplicationError(400, "Analysis needs to be passed!");
 		}
 
-		await this.repository().save({
-			...analysis,
-			testBenchId: analysis.testBench.id,
-			accountId: analysis.account.id,
-		});
+		await this.repository().save(analysis);
 	}
 
 	async find(testBenchId: string) {
@@ -30,7 +26,7 @@ export class PGAnalysisRepository implements IAnalysisRepository {
 
 		const analysis = await this.repository().find({
 			where: { testBenchId },
-			relations: ["steps", "steps.instruction"],
+			relations: ["steps", "steps.instruction", "account"],
 		});
 
 		return analysis;
