@@ -29,6 +29,10 @@ export class PGAnalysisRepository implements IAnalysisRepository {
 			relations: ["steps", "steps.instruction", "account"],
 		});
 
+		if (!analysis) {
+			throw new ApplicationError(404, "No Analysis  whore found!");
+		}
+
 		return analysis;
 	}
 }

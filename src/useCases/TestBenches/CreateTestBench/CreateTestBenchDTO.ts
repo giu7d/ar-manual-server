@@ -12,16 +12,19 @@ export interface ICreateTestBenchRequestDTO {
 			type: "image" | "video" | "AR";
 			src: string;
 		}[];
-		warnings: { description: string }[];
+		warnings?: { description: string }[];
 	}[];
 
 	cao: {
 		description: string;
 		items: {
 			description: string;
-			frequency: string;
-			series: string;
-			reforce: string;
+			frequency:
+				| {
+						series: string;
+						reforce: string;
+				  }
+				| string;
 			method: string;
 			conformity: string;
 		}[];

@@ -5,11 +5,12 @@ export class CAOItem {
 
 	description: string;
 
-	frequency: string;
-
-	series: string;
-
-	reforce: string;
+	frequency:
+		| {
+				series: string;
+				reforce: string;
+		  }
+		| string;
 
 	method: string;
 

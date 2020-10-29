@@ -22,6 +22,10 @@ export class PGAnalysisStepRepository implements IAnalysisStepRepository {
 			},
 		});
 
+		if (!steps) {
+			throw new ApplicationError(404, "No Analysis Step whore found!");
+		}
+
 		return steps;
 	}
 }

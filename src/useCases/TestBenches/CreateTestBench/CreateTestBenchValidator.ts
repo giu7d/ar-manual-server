@@ -28,7 +28,7 @@ export const createTestBenchValidatorHandler = celebrate({
 							description: Joi.string().required(),
 						})
 					)
-					.required(),
+					.default([]),
 			})
 		),
 		cao: Joi.object({
@@ -37,9 +37,13 @@ export const createTestBenchValidatorHandler = celebrate({
 				.items(
 					Joi.object({
 						description: Joi.string().required(),
-						frequency: Joi.string().required(),
-						series: Joi.string().required(),
-						reforce: Joi.string().required(),
+						frequency: Joi.alternatives(
+							Joi.string(),
+							Joi.object({
+								series: Joi.string().required(),
+								reforce: Joi.string().required(),
+							})
+						).required(),
 						method: Joi.string().required(),
 						conformity: Joi.string().required(),
 					})
