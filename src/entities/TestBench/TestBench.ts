@@ -12,6 +12,8 @@ export class TestBench {
 
 	thumbnailSrc: string;
 
+	qrCodeSrc?: string;
+
 	cao: CAO;
 
 	instructions: Instruction[];
@@ -19,13 +21,16 @@ export class TestBench {
 	isActive: boolean;
 
 	constructor(
-		props: Omit<TestBench, "id" | "isActive">,
+		props: Omit<TestBench, "id" | "isActive" | "qrCodeSrc">,
 		id?: string,
-		isActive?: boolean
+		isActive?: boolean,
+		qrCodeSrc?: string
 	) {
 		Object.assign(this, props);
 
 		this.isActive = isActive || true;
+
+		this.qrCodeSrc = qrCodeSrc;
 
 		if (!id) {
 			this.id = uuid();

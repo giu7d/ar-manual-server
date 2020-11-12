@@ -33,6 +33,11 @@ export class TestBenchORM extends TestBench {
 	thumbnailSrc: string;
 
 	@Column({
+		default: "placeholder-value",
+	})
+	qrCodeSrc: string;
+
+	@Column({
 		default: true,
 	})
 	isActive: boolean;
