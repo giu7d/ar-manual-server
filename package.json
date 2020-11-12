@@ -4,13 +4,10 @@
 	"main": "dist/server.js",
 	"author": "Giuseppe Setem <giuseppe7d@gmail.com>",
 	"license": "MIT",
-	"engines": {
-		"node": "14.15.0"
-	},
 	"scripts": {
 		"start": "nodemon -L",
 		"serve": "node -r dotenv/config build/server.js dotenv_config_path=.env",
-		"build": "yarn clear && build:credentials && yarn build:ts && yarn build:babel",
+		"build": "yarn clear && yarn build:credentials && yarn build:ts && yarn build:babel",
 		"build:ts": "tsc --build tsconfig.production.json",
 		"build:babel": "babel --extensions \".ts,.js\" src -d build",
 		"build:credentials": "node -r dotenv/config ./config/setupCredentials",
