@@ -4,6 +4,9 @@
 	"main": "dist/server.js",
 	"author": "Giuseppe Setem <giuseppe7d@gmail.com>",
 	"license": "MIT",
+	"engines": {
+		"node": "14.15.0"
+	},
 	"scripts": {
 		"start": "nodemon -L",
 		"serve": "node -r dotenv/config build/server.js dotenv_config_path=.env",
