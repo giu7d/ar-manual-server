@@ -1,17 +1,17 @@
-import { AzureFileStorageProvider } from "src/providers/FileStorage/implementation/AzureFileStorageProvider";
+import { GoogleFileStorageProvider } from "src/providers/FileStorage/implementation/GoogleFileStorageProvider";
 
 import { UploadFilesController } from "./UploadFilesController";
 import { UploadFilesUseCase } from "./UploadFilesUseCase";
 import { uploadFilesValidator } from "./UploadFilesValidator";
 
-const CONTAINER_NAME = "instruction-images";
+const FOLDER_NAME = "instructions";
 
-export const azureFileStorageProvider = new AzureFileStorageProvider(
-	CONTAINER_NAME
+export const googleFileStorageProvider = new GoogleFileStorageProvider(
+	FOLDER_NAME
 );
 
 export const uploadFilesUseCase = new UploadFilesUseCase(
-	azureFileStorageProvider
+	googleFileStorageProvider
 );
 
 export const uploadFilesController = new UploadFilesController(
