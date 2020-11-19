@@ -1,10 +1,10 @@
 import { Response, Request, RequestHandler, NextFunction } from "express";
 
-import { UploadFilesUseCase } from "./UploadFilesUseCase";
+import { UploadFormDataUseCase } from "./UploadFormDataUseCase";
 
-export class UploadFilesController {
+export class UploadFormDataController {
 	constructor(
-		private useCase: UploadFilesUseCase,
+		private useCase: UploadFormDataUseCase,
 		private validator: RequestHandler
 	) {}
 
@@ -18,7 +18,10 @@ export class UploadFilesController {
 
 	async handle(request: Request, response: Response): Promise<Response> {
 		try {
-			const message = await this.useCase.execute(request.files.files);
+			const message = await this.useCase.execute(
+				request.params.folder,
+				request.files.files
+			);
 			return response.status(200).json(message).send();
 		} catch (error) {
 			return response

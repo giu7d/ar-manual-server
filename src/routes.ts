@@ -16,7 +16,8 @@ import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBe
 import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";
 import { modifyTestBenchController } from "src/useCases/TestBenches/ModifyTestBench";
 import { showTestBenchController } from "src/useCases/TestBenches/ShowTestBench";
-import { uploadFilesController } from "src/useCases/UploadFiles";
+import { uploadBase64Controller } from "src/useCases/Upload/Base64";
+import { uploadFormDataController } from "src/useCases/Upload/FormData";
 
 const routes = Router();
 
@@ -122,10 +123,17 @@ routes.get(
 
 // Upload Files
 routes.post(
-	"/files",
+	"/upload/form/:folder",
 	(req, res, next) => authenticationMiddleware.handle(req, res, next),
-	(req, res, next) => uploadFilesController.validate(req, res, next),
-	(req, res) => uploadFilesController.handle(req, res)
+	(req, res, next) => uploadFormDataController.validate(req, res, next),
+	(req, res) => uploadFormDataController.handle(req, res)
+);
+
+routes.post(
+	"/upload/base64/:folder",
+	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	(req, res, next) => uploadBase64Controller.validate(req, res, next),
+	(req, res) => uploadBase64Controller.handle(req, res)
 );
 
 // Statistics

@@ -17,7 +17,7 @@ export class CreateTestBenchUseCase {
 		const qrCode = await QRCodeFactory.create(testbench.id);
 
 		const qrCodeURL = await this.fileStorageProvider.save(
-			`qrcode-${testbench.id}.jpg`,
+			`qrcodes/qrcode-${testbench.id}.jpg`,
 			qrCode
 		);
 

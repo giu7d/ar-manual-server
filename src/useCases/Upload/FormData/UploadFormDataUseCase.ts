@@ -3,12 +3,18 @@ import { isEmpty } from "lodash";
 import { v4 as uuid } from "uuid";
 
 import { IFileStorageProvider } from "src/providers/FileStorage/IFileStorageProvider";
-import { FileUploadMalformedError } from "src/utils/errors/FileUploadErrors";
+import {
+	FileUploadFormatError,
+	FileUploadMalformedError,
+} from "src/utils/errors/FileUploadErrors";
 
-export class UploadFilesUseCase {
+export class UploadFormDataUseCase {
 	constructor(private fileStorageProvider: IFileStorageProvider) {}
 
-	async execute(uploadedFiles: Array<UploadedFile> | UploadedFile) {
+	async execute(
+		folder: string,
+		uploadedFiles: Array<UploadedFile> | UploadedFile
+	) {
 		const files =
 			uploadedFiles instanceof Array ? uploadedFiles : [uploadedFiles];
 
@@ -24,13 +30,28 @@ export class UploadFilesUseCase {
 
 		const filesWithBlobsURL = await Promise.all(
 			filesWithBinary.map(async ({ binary, name, mimetype }) => {
-				const newName = `${uuid()}.jpg`;
+				const [oldName, format] = name.split(".");
+				const [type] = mimetype.split("/");
+
+				if (!format.match(/jpg|jpeg|png|glb/)) {
+					throw new FileUploadFormatError(format);
+				}
+
+				let fileName;
+
+				if (type === "image") {
+					fileName = `${folder}/${uuid()}.jpg`;
+				} else {
+					fileName = `${folder}/${uuid()}.${format}`;
+				}
+
+				const url = await this.fileStorageProvider.save(fileName, binary);
 
 				return {
-					oldName: name,
-					newName,
-					type: mimetype,
-					url: await this.fileStorageProvider.save(newName, binary),
+					type,
+					url,
+					oldName,
+					newName: fileName,
 				};
 			})
 		);

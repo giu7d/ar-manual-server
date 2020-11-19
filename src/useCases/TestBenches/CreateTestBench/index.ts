@@ -5,11 +5,9 @@ import { CreateTestBenchController } from "./CreateTestBenchController";
 import { CreateTestBenchUseCase } from "./CreateTestBenchUseCase";
 import { createTestBenchValidatorHandler } from "./CreateTestBenchValidator";
 
-const FOLDER_NAME = "qrcodes";
-
 const createTestBenchUseCase = new CreateTestBenchUseCase(
 	new PGTestBenchRepository(),
-	new GoogleFileStorageProvider(FOLDER_NAME)
+	new GoogleFileStorageProvider()
 );
 
 export const createTestBenchController = new CreateTestBenchController(

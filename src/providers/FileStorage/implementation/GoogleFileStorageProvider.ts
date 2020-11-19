@@ -12,7 +12,7 @@ export class GoogleFileStorageProvider implements IFileStorageProvider {
 	private storage: Storage;
 	private bucket: Bucket;
 
-	constructor(private folderName: string) {
+	constructor() {
 		this.storage = new Storage({
 			projectId: GOOGLE_CLOUD_PROJECT,
 			keyFilename: GOOGLE_CLOUD_CREDENTIALS,
@@ -21,7 +21,7 @@ export class GoogleFileStorageProvider implements IFileStorageProvider {
 	}
 
 	async save(fileName: string, binary: Uint8Array): Promise<string> {
-		const blob = this.bucket.file(`${this.folderName}/${fileName}`);
+		const blob = this.bucket.file(fileName);
 
 		await blob.save(binary, {
 			gzip: true,
