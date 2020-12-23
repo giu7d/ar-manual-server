@@ -1,11 +1,4 @@
-import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToOne,
-	OneToMany,
-	PrimaryColumn,
-} from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 import { AccountORM } from "src/entities/Account/AccountORM";
 import { AnalysisStepORM } from "src/entities/AnalysisStep/AnalysisStepORM";
@@ -25,25 +18,17 @@ export class AnalysisORM extends Analysis {
 	status: "approved" | "failure";
 
 	@Column()
-	testBenchId: string;
-
-	@ManyToOne(() => TestBenchORM, (testBench) => testBench.analysis)
-	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
-	testBench: TestBenchORM;
-
-	@OneToMany(() => AnalysisStepORM, (data) => data.analysis, { cascade: true })
-	steps: AnalysisStepORM[];
-
-	@Column()
 	startedAt: Date;
 
 	@Column()
 	finishedAt: Date;
 
-	@Column()
-	accountId: string;
-
 	@ManyToOne(() => AccountORM, (account) => account.analysis)
-	@JoinColumn({ name: "accountId", referencedColumnName: "id" })
 	account: AccountORM;
+
+	@ManyToOne(() => TestBenchORM, (testBench) => testBench.analysis)
+	testBench: TestBenchORM;
+
+	@OneToMany(() => AnalysisStepORM, (data) => data.analysis, { cascade: true })
+	steps: AnalysisStepORM[];
 }

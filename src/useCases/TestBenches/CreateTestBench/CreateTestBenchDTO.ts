@@ -6,13 +6,16 @@ export interface ICreateTestBenchRequestDTO {
 	thumbnailSrc: string;
 
 	instructions?: {
-		description: string;
 		step: number;
+		title: string;
+		description: string;
 		sources: {
-			type: "image" | "video" | "AR";
+			type: "image" | "video" | "3D";
 			src: string;
 		}[];
-		warnings?: { description: string }[];
+		warnings?: {
+			description: string;
+		}[];
 	}[];
 
 	cao: {

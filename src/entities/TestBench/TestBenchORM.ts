@@ -42,7 +42,10 @@ export class TestBenchORM extends TestBench {
 	})
 	isActive: boolean;
 
-	@OneToMany(() => InstructionORM, (data) => data.testBench, { cascade: true })
+	@OneToMany(() => InstructionORM, (data) => data.testBench, {
+		cascade: true,
+		onUpdate: "CASCADE",
+	})
 	instructions: InstructionORM[];
 
 	@OneToOne(() => CAOORM, { cascade: true })

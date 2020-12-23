@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 
 import { InstructionORM } from "src/entities/Instruction/InstructionORM";
 
@@ -13,15 +13,11 @@ export class InstructionSourceORM extends InstructionSource {
 	id: string;
 
 	@Column()
-	type: "image" | "video" | "AR";
+	type: "image" | "video" | "3D";
 
 	@Column()
 	src: string;
 
-	@Column()
-	instructionId: string;
-
 	@ManyToOne(() => InstructionORM, (instruction) => instruction.sources)
-	@JoinColumn({ name: "instructionId", referencedColumnName: "id" })
 	instruction: InstructionORM;
 }

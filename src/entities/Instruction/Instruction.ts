@@ -6,6 +6,8 @@ import { Warning } from "src/entities/Warning/Warning";
 export class Instruction {
 	readonly id: string;
 
+	title: string;
+
 	description: string;
 
 	step: number;
