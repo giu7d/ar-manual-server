@@ -38,6 +38,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Env
+        run: touch .env
+             
       - name: Serve Dependencies By Docker Compose
         working-directory: .
         run: docker-compose up -d
