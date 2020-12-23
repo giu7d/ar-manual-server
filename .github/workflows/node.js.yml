@@ -11,7 +11,26 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+    env:
+      ENV: ${{secrets.ENV}}
+      PORT: ${{secrets.PORT}}
+      JWT_SECRET: ${{secrets.JWT_SECRET}}
+      TYPEORM_CONNECTION: ${{secrets.TYPEORM_CONNECTION}}
+      TYPEORM_HOST: ${{secrets.TYPEORM_HOST}}
+      TYPEORM_PORT: ${{secrets.TYPEORM_PORT}}
+      TYPEORM_USERNAME: ${{secrets.TYPEORM_USERNAME}}
+      TYPEORM_PASSWORD: ${{secrets.TYPEORM_PASSWORD}}
+      TYPEORM_DATABASE: ${{secrets.TYPEORM_DATABASE}}
+      TYPEORM_SYNCHRONIZE: ${{secrets.TYPEORM_SYNCHRONIZE}}
+      TYPEORM_ENTITIES: ${{secrets.TYPEORM_ENTITIES}}
+      TYPEORM_ENTITIES_DIR: ${{secrets.TYPEORM_ENTITIES_DIR}} 
+      TYPEORM_MIGRATIONS: ${{secrets.TYPEORM_MIGRATIONS}}
+      TYPEORM_MIGRATIONS_DIR: ${{secrets.TYPEORM_MIGRATIONS_DIR}}
+      GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
+      GOOGLE_CLOUD_CREDENTIALS: ${{secrets.GOOGLE_CLOUD_CREDENTIALS}}
+      GOOGLE_CLOUD_BUCKET_NAME: ${{secrets.GOOGLE_CLOUD_BUCKET_NAME}}
+      GOOGLE_CLOUD_KEYFILE: ${{secrets.GOOGLE_CLOUD_KEYFILE}}
+
     strategy:
         matrix:
           node-version: [10.x, 12.x, 14.x]
