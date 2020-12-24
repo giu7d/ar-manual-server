@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-			- dev
+      - dev
 
 jobs:
   test:
@@ -24,7 +24,7 @@ jobs:
       TYPEORM_ENTITIES_DIR: ${{secrets.TYPEORM_ENTITIES_DIR}}
       TYPEORM_MIGRATIONS: ${{secrets.TYPEORM_MIGRATIONS}}
       TYPEORM_MIGRATIONS_DIR: ${{secrets.TYPEORM_MIGRATIONS_DIR}}
-			GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
+      GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
       GOOGLE_CLOUD_CREDENTIALS: ${{secrets.GOOGLE_CLOUD_CREDENTIALS}}
       GOOGLE_CLOUD_BUCKET_NAME: ${{secrets.GOOGLE_CLOUD_BUCKET_NAME}}
       GOOGLE_CLOUD_KEYFILE: ${{secrets.GOOGLE_CLOUD_KEYFILE}}
@@ -51,5 +51,5 @@ jobs:
       - name: Install Dependencies And Run
         run: |
           yarn
-					yarn typeorm migration:run
+          yarn typeorm migration:run
           yarn test:coverage
