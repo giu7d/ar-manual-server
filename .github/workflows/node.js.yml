@@ -12,7 +12,6 @@ jobs:
       ENV: ${{secrets.ENV}}
       PORT: ${{secrets.PORT}}
       JWT_SECRET: ${{secrets.JWT_SECRET}}
-			# TypeORM
       TYPEORM_CONNECTION: ${{secrets.TYPEORM_CONNECTION}}
       TYPEORM_HOST: ${{secrets.TYPEORM_HOST}}
       TYPEORM_PORT: ${{secrets.TYPEORM_PORT}}
@@ -24,7 +23,6 @@ jobs:
       TYPEORM_ENTITIES_DIR: ${{secrets.TYPEORM_ENTITIES_DIR}}
       TYPEORM_MIGRATIONS: ${{secrets.TYPEORM_MIGRATIONS}}
       TYPEORM_MIGRATIONS_DIR: ${{secrets.TYPEORM_MIGRATIONS_DIR}}
-			# Google Cloud
 			GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
       GOOGLE_CLOUD_CREDENTIALS: ${{secrets.GOOGLE_CLOUD_CREDENTIALS}}
       GOOGLE_CLOUD_BUCKET_NAME: ${{secrets.GOOGLE_CLOUD_BUCKET_NAME}}
