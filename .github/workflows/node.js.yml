@@ -51,5 +51,7 @@ jobs:
       - name: Install Dependencies And Run
         run: |
           yarn
+          yarn build
+					node build/server.js
           yarn typeorm:prod migration:run
           yarn test:coverage
