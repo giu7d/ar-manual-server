@@ -13,17 +13,19 @@ jobs:
       ENV: ${{secrets.ENV}}
       PORT: ${{secrets.PORT}}
       JWT_SECRET: ${{secrets.JWT_SECRET}}
-      TYPEORM_CONNECTION: ${{secrets.TYPEORM_CONNECTION}}
-      TYPEORM_HOST: ${{secrets.TYPEORM_HOST}}
-      TYPEORM_PORT: ${{secrets.TYPEORM_PORT}}
-      TYPEORM_USERNAME: ${{secrets.TYPEORM_USERNAME}}
-      TYPEORM_PASSWORD: ${{secrets.TYPEORM_PASSWORD}}
-      TYPEORM_DATABASE: ${{secrets.TYPEORM_DATABASE}}
-      TYPEORM_SYNCHRONIZE: ${{secrets.TYPEORM_SYNCHRONIZE}}
-      TYPEORM_ENTITIES: ${{secrets.TYPEORM_ENTITIES}}
-      TYPEORM_ENTITIES_DIR: ${{secrets.TYPEORM_ENTITIES_DIR}}
-      TYPEORM_MIGRATIONS: ${{secrets.TYPEORM_MIGRATIONS}}
-      TYPEORM_MIGRATIONS_DIR: ${{secrets.TYPEORM_MIGRATIONS_DIR}}
+      # TypeORM
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_HOST: localhost
+      TYPEORM_PORT: 5432
+      TYPEORM_USERNAME: postgres
+      TYPEORM_PASSWORD: postgres
+      TYPEORM_DATABASE: project_db
+      TYPEORM_SYNCHRONIZE: false
+      TYPEORM_ENTITIES: src/entities/**/*.ts,build/entities/**/*.js
+      TYPEORM_ENTITIES_DIR: src/entities/generated
+      TYPEORM_MIGRATIONS: config/migrations/**/*.ts,config/migrations/**/*.js
+      TYPEORM_MIGRATIONS_DIR: config/migrations~
+      # Google Cloud
       GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
       GOOGLE_CLOUD_CREDENTIALS: ${{secrets.GOOGLE_CLOUD_CREDENTIALS}}
       GOOGLE_CLOUD_BUCKET_NAME: ${{secrets.GOOGLE_CLOUD_BUCKET_NAME}}
@@ -51,5 +53,5 @@ jobs:
       - name: Install Dependencies And Run
         run: |
           yarn
-          yarn typeorm migration:run
+          yarn typeorm:prod migration:run
           yarn test:coverage
