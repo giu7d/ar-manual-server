@@ -21,10 +21,8 @@ jobs:
       TYPEORM_PASSWORD: postgres
       TYPEORM_DATABASE: project_db
       TYPEORM_SYNCHRONIZE: false
-      TYPEORM_ENTITIES: src/entities/**/*.ts,build/entities/**/*.js
-      TYPEORM_ENTITIES_DIR: src/entities/generated
-      TYPEORM_MIGRATIONS: config/migrations/**/*.ts,config/migrations/**/*.js
-      TYPEORM_MIGRATIONS_DIR: config/migrations~
+      TYPEORM_ENTITIES: build/entities/**/*.js
+      TYPEORM_MIGRATIONS: config/migrations/**/*.js
       # Google Cloud
       GOOGLE_CLOUD_PROJECT: ${{secrets.GOOGLE_CLOUD_PROJECT}}
       GOOGLE_CLOUD_CREDENTIALS: ${{secrets.GOOGLE_CLOUD_CREDENTIALS}}
