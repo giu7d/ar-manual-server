@@ -52,6 +52,6 @@ jobs:
         run: |
           yarn
           yarn build
-					node build/server.js
+          node build/server.js
           yarn typeorm:prod migration:run
           yarn test:coverage
