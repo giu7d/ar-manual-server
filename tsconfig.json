@@ -19,5 +19,12 @@
 		}
 	},
 	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules", "build", "coverage", "dist", "config", "scripts"]
+	"exclude": [
+		"node_modules",
+		"build",
+		"coverage",
+		"dist",
+		"config",
+		"config/scripts"
+	]
 }

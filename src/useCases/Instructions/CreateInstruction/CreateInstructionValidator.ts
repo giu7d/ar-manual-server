@@ -18,7 +18,7 @@ export const createInstructionValidatorHandler = celebrate({
 		sources: Joi.array()
 			.items(
 				Joi.object({
-					type: Joi.string().allow("image", "video", "AR").required(),
+					type: Joi.string().allow("image", "video", "3D").required(),
 					src: Joi.string().required(),
 				})
 			)

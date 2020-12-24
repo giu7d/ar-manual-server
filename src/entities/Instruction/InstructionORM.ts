@@ -1,11 +1,4 @@
-import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToOne,
-	OneToMany,
-	PrimaryColumn,
-} from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 import { AnalysisStepORM } from "src/entities/AnalysisStep/AnalysisStepORM";
 import { InstructionSourceORM } from "src/entities/InstructionSource/InstructionSourceORM";
@@ -23,6 +16,9 @@ export class InstructionORM extends Instruction {
 	id: string;
 
 	@Column()
+	title: string;
+
+	@Column()
 	description: string;
 
 	@Column()
@@ -35,21 +31,19 @@ export class InstructionORM extends Instruction {
 
 	@OneToMany(() => InstructionSourceORM, (source) => source.instruction, {
 		cascade: true,
+		onUpdate: "CASCADE",
 	})
 	sources: InstructionSourceORM[];
 
 	@OneToMany(() => WarningORM, (warning) => warning.instruction, {
 		cascade: true,
+		onUpdate: "CASCADE",
 	})
 	warnings: WarningORM[];
 
-	@Column()
-	testBenchId: string;
-
-	@ManyToOne(() => TestBenchORM, (testBench) => testBench.instructions)
-	@JoinColumn({ name: "testBenchId", referencedColumnName: "id" })
-	testBench: TestBenchORM;
-
 	@OneToMany(() => AnalysisStepORM, (step) => step.instruction)
 	analysisStep: AnalysisStepORM[];
+
+	@ManyToOne(() => TestBenchORM, (testBench) => testBench.instructions)
+	testBench: TestBenchORM;
 }

@@ -22,7 +22,6 @@ export class PGInstructionRepository implements IInstructionRepository {
 
 		await this.repository().save({
 			...instruction,
-			testBenchId,
 		} as InstructionORM);
 	}
 
