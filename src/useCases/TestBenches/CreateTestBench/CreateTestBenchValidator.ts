@@ -13,11 +13,12 @@ export const createTestBenchValidatorHandler = celebrate({
 		instructions: Joi.array().items(
 			Joi.object({
 				step: Joi.number().required(),
+				title: Joi.string().required(),
 				description: Joi.string().required(),
 				sources: Joi.array()
 					.items(
 						Joi.object({
-							type: Joi.string().allow("image", "video", "AR").required(),
+							type: Joi.string().allow("image", "video", "3D").required(),
 							src: Joi.string().required(),
 						})
 					)

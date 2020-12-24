@@ -14,14 +14,14 @@ export class CreateTestBenchUseCase {
 	async execute(data: ICreateTestBenchRequestDTO) {
 		const testbench = TestBenchFactory.create(data);
 
-		const qrCode = await QRCodeFactory.create(testbench.id);
+		const qrCodeBinary = await QRCodeFactory.create(testbench.id);
 
-		const qrCodeURL = await this.fileStorageProvider.save(
+		const qrCodeSrc = await this.fileStorageProvider.save(
 			`qrcodes/qrcode-${testbench.id}.jpg`,
-			qrCode
+			qrCodeBinary
 		);
 
-		testbench.qrCodeSrc = qrCodeURL;
+		testbench.qrCodeSrc = qrCodeSrc;
 
 		await this.testBenchRepository.save(testbench);
 

@@ -7,10 +7,8 @@
 		"dist",
 		"config",
 		"scripts",
-		"**/**.spec.ts",
-		"src/__mocks__/*.d.ts",
-		"src/__mocks__/**",
-		"src/__helpers__/*.d.ts",
-		"src/__helpers__/**"
+		"__tests__/**",
+		"__tests__/*.d.ts",
+		"**/**.spec.ts"
 	]
 }
