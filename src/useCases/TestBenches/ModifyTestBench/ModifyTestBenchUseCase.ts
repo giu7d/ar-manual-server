@@ -24,6 +24,13 @@ export class ModifyTestBenchUseCase {
 			testBench.instructions = instructions;
 		}
 
-		await this.testBenchRepository.modify(testBench);
+		await this.testBenchRepository.modify({
+			...testBench,
+			componentSerialNumber:
+				data.componentSerialNumber || testBench.componentSerialNumber,
+			testBenchSerialNumber:
+				data.testBenchSerialNumber || testBench.testBenchSerialNumber,
+			thumbnailSrc: data.thumbnailSrc || testBench.thumbnailSrc,
+		});
 	}
 }
