@@ -95,6 +95,26 @@ describe("Account Endpoint", () => {
 		expect(body.id).toBe(testBench.id);
 	});
 
+	it("should modify test bench", async () => {
+		const payload = {
+			testBenchSerialNumber: "TESTBENCH-SERIAL-NEW",
+		};
+
+		const { status } = await request(URL)
+			.put(`/testbenches/${testBench.id}`)
+			.set("Authorization", bearerToken)
+			.send(payload);
+
+		expect(status).toBe(200);
+
+		const { body } = await request(URL)
+			.get(`/testbenches/${testBench.id}`)
+			.set("Authorization", bearerToken)
+			.send();
+
+		expect(body.testBenchSerialNumber).toBe(payload.testBenchSerialNumber);
+	});
+
 	it("should modify instruction test bench", async () => {
 		const payload = {
 			instructions: [

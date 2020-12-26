@@ -15,8 +15,7 @@ export class AuthenticationMiddleware {
 		} catch (error) {
 			return response
 				.status(500)
-				.json({ message: error.message || "Unexpected error!" })
-				.send();
+				.json({ message: error.message || "Unexpected error!" });
 		}
 	}
 }

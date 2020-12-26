@@ -21,7 +21,7 @@ export class CreateAccountController {
 			const data = request.body;
 			const message = await this.createAccountUseCase.execute(data);
 
-			return response.status(201).json(message).send();
+			return response.status(201).json(message);
 		} catch (error) {
 			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error.",
