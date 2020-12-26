@@ -23,7 +23,7 @@ const payload = {
 		{
 			step: 1,
 			title: "INSTRUCTION_1",
-			description: "DESCRIPTION_1",
+			description: "DESCRIPTION_1, DESCRIPTION_1, DESCRIPTION_1",
 			sources: [
 				{
 					type: "image",
@@ -34,7 +34,7 @@ const payload = {
 		{
 			step: 2,
 			title: "INSTRUCTION_2",
-			description: "DESCRIPTION_2",
+			description: "DESCRIPTION_2, DESCRIPTION_2,DESCRIPTION_2",
 			sources: [
 				{
 					type: "image",

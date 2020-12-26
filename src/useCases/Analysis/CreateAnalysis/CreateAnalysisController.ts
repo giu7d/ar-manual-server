@@ -30,7 +30,7 @@ export class CreateAnalysisController {
 				...data,
 			});
 
-			return response.status(201).json(message).send();
+			return response.status(201).json(message);
 		} catch (error) {
 			return response.status(error.status || 500).json({
 				message: error.message || "Unexpected error!",

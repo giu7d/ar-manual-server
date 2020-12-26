@@ -22,12 +22,11 @@ export class UploadBase64Controller {
 				folder: request.params.folder,
 				files: request.body.files,
 			});
-			return response.status(200).json(message).send();
+			return response.status(200).json(message);
 		} catch (error) {
 			return response
 				.status(error.status || 500)
-				.json({ message: error.message || "Unexpected error!" })
-				.send();
+				.json({ message: error.message || "Unexpected error!" });
 		}
 	}
 }

@@ -22,12 +22,11 @@ export class UploadFormDataController {
 				request.params.folder,
 				request.files.files
 			);
-			return response.status(200).json(message).send();
+			return response.status(200).json(message);
 		} catch (error) {
 			return response
 				.status(error.status || 500)
-				.json({ message: error.message || "Unexpected error!" })
-				.send();
+				.json({ message: error.message || "Unexpected error!" });
 		}
 	}
 }
