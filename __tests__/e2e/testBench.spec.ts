@@ -28,7 +28,7 @@ const testBench = {
 		{
 			step: 1,
 			title: "INSTRUCTION_1",
-			description: "DESCRIPTION_1",
+			description: "DESCRIPTION_1, DESCRIPTION_1, DESCRIPTION_1",
 			sources: [
 				{
 					type: "image",
@@ -39,7 +39,7 @@ const testBench = {
 		{
 			step: 2,
 			title: "INSTRUCTION_2",
-			description: "DESCRIPTION_2",
+			description: "DESCRIPTION_2, DESCRIPTION_2, DESCRIPTION_2",
 			sources: [
 				{
 					type: "image",
@@ -122,7 +122,7 @@ describe("Account Endpoint", () => {
 				{
 					step: 3,
 					title: "INSTRUCTION_3",
-					description: "DESCRIPTION_3",
+					description: "DESCRIPTION_3, DESCRIPTION_3, DESCRIPTION_3",
 					sources: [
 						{
 							type: "image",
