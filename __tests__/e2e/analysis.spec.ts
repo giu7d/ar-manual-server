@@ -13,8 +13,8 @@ let bearerToken = null;
 const analysis = {
 	id: v4(),
 	testBenchId: null,
-	finishedAt: new Date().toISOString(),
-	startedAt: new Date().toISOString(),
+	startedAt: new Date(),
+	finishedAt: new Date(new Date().setHours(new Date().getHours() + 1)),
 	status: "success",
 	steps: [],
 };
@@ -27,8 +27,8 @@ describe("Analysis Endpoint", () => {
 		analysis.testBenchId = testBenchId;
 		analysis.steps = instructionsIds.map((id) => ({
 			instructionId: id,
-			finishedAt: new Date().toISOString(),
-			startedAt: new Date().toISOString(),
+			startedAt: new Date(),
+			finishedAt: new Date(new Date().setHours(new Date().getHours() + 1)),
 			status: "success",
 		}));
 	});

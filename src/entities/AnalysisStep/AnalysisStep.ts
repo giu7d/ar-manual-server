@@ -19,6 +19,8 @@ export class AnalysisStep {
 
 	finishedAt: Date;
 
+	timeDifference: number;
+
 	constructor(props: Omit<AnalysisStep, "id">, id?: string) {
 		Object.assign(this, props);
 

@@ -23,6 +23,11 @@ export class AnalysisORM extends Analysis {
 	@Column()
 	finishedAt: Date;
 
+	@Column({
+		default: 0,
+	})
+	timeDifference: number;
+
 	@ManyToOne(() => AccountORM, (account) => account.analysis)
 	account: AccountORM;
 

@@ -32,6 +32,11 @@ export class AnalysisStepORM extends AnalysisStep {
 	@Column()
 	finishedAt: Date;
 
+	@Column({
+		default: 0,
+	})
+	timeDifference: number;
+
 	@ManyToOne(() => AnalysisORM, (analysis) => analysis.steps)
 	analysis: AnalysisORM;
 
