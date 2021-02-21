@@ -1,4 +1,4 @@
 export interface IPermissionLogicDTO {
-	accountId: string;
+	bearerToken: string;
 	clientType: string;
 }

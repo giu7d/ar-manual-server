@@ -7,9 +7,11 @@ export class PermissionMiddleware {
 
 	async handle(request: Request, response: Response, next: NextFunction) {
 		try {
+			const { authorization } = request.headers;
+
 			await this.logic.execute({
-				accountId: request.headers["api-account-id"] as string,
-				clientType: request.headers["Client-Type"] as string,
+				bearerToken: authorization,
+				clientType: request.headers["client-type"] as string,
 			});
 
 			return next();

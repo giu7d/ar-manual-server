@@ -1,18 +1,13 @@
 import request from "supertest";
-import { v4 as uuid } from "uuid";
 
 import { createBearerToken } from "../__helpers__/createBearerToken";
+import { generateAccount } from "../__mocks__/requests/account";
 
 const { PORT = 8080 } = process.env;
 
 const URL = `http://localhost:${PORT}`;
 
-const account = {
-	id: null,
-	bearerToken: null,
-	email: `${uuid()}@dev.com`,
-	password: "strong_password",
-};
+const account = generateAccount();
 
 describe("Account Endpoint", () => {
 	it("should admin create account", async () => {
@@ -52,6 +47,7 @@ describe("Account Endpoint", () => {
 		const { body, status } = await request(URL)
 			.get(`/accounts/${account.id}`)
 			.set("Authorization", account.bearerToken)
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
 			.send();
 
 		expect(status).toBe(200);
@@ -67,6 +63,7 @@ describe("Account Endpoint", () => {
 		const { status } = await request(URL)
 			.put(`/accounts/${account.id}`)
 			.set("Authorization", account.bearerToken)
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
 			.send(payload);
 
 		expect(status).toBe(200);
@@ -105,6 +102,7 @@ describe("Account Endpoint", () => {
 		const { status } = await request(URL)
 			.delete(`/accounts/${account.id}`)
 			.set("Authorization", account.bearerToken)
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
 			.send();
 
 		expect(status).toBe(200);

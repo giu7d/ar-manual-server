@@ -1,20 +1,14 @@
 import request from "supertest";
-import { v4 as uuid } from "uuid";
 
+import { generateCreateAccountRequest } from "../__mocks__/requests/account";
 import { createBearerToken } from "./createBearerToken";
 
 const { PORT = 8080 } = process.env;
 
 const URL = `http://localhost:${PORT}`;
 
-export async function createCredentials() {
-	const payload = {
-		firstName: "FirstName",
-		lastName: "LastName",
-		email: `${uuid()}@dev.com`,
-		password: uuid(),
-		isAdmin: true,
-	};
+export async function createCredentials(isAdmin = true) {
+	const payload = generateCreateAccountRequest(isAdmin);
 
 	await request(URL).post("/accounts").send(payload);
 
