@@ -25,7 +25,10 @@ describe("Account Endpoint", () => {
 			instructions: testBench.instructions,
 		};
 
-		const bearerTokenWithoutAdminPermission = await createCredentials(false);
+		const bearerTokenWithoutAdminPermission = await createCredentials(
+			false,
+			"ANALYSIS_MOBILE_APP"
+		);
 
 		const { status } = await request(URL)
 			.post("/testbenches")
@@ -69,7 +72,10 @@ describe("Account Endpoint", () => {
 	});
 
 	it("should index all test benches to account not admin from mobile app", async () => {
-		const bearerTokenWithoutAdminPermission = await createCredentials(false);
+		const bearerTokenWithoutAdminPermission = await createCredentials(
+			false,
+			"ANALYSIS_MOBILE_APP"
+		);
 
 		const { body, status } = await request(URL)
 			.get("/testbenches")
@@ -93,7 +99,10 @@ describe("Account Endpoint", () => {
 	});
 
 	it("should show a test bench to account not admin from mobile app", async () => {
-		const bearerTokenWithoutAdminPermission = await createCredentials(false);
+		const bearerTokenWithoutAdminPermission = await createCredentials(
+			false,
+			"ANALYSIS_MOBILE_APP"
+		);
 
 		const { body, status } = await request(URL)
 			.get(`/testbenches/${testBench.id}`)

@@ -1,7 +1,10 @@
 import request from "supertest";
 
 import { createBearerToken } from "../__helpers__/createBearerToken";
-import { generateAccount } from "../__mocks__/requests/account";
+import {
+	generateAccount,
+	generateCreateAccountRequest,
+} from "../__mocks__/requests/account";
 
 const { PORT = 8080 } = process.env;
 
@@ -35,12 +38,74 @@ describe("Account Endpoint", () => {
 
 		const { body, status } = await request(URL)
 			.post("/accounts/auth")
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
 			.send(payload);
 
 		expect(status).toBe(200);
 		expect(body).toHaveProperty("token");
 
 		account.bearerToken = createBearerToken(body.token);
+	});
+
+	it("should authenticate with admin account from mobile app", async () => {
+		const payload = generateCreateAccountRequest(true);
+
+		await request(URL).post("/accounts").send(payload);
+
+		const { body, status } = await request(URL)
+			.post("/accounts/auth")
+			.set("Client-Type", "ANALYSIS_MOBILE_APP")
+			.send({
+				email: payload.email,
+				password: payload.password,
+			});
+
+		expect(status).toBe(200);
+		expect(body).toHaveProperty("token");
+	});
+
+	it("should authenticate with not admin account from mobile app", async () => {
+		const payload = generateCreateAccountRequest(false);
+
+		await request(URL).post("/accounts").send(payload);
+
+		const { body, status } = await request(URL)
+			.post("/accounts/auth")
+			.set("Client-Type", "ANALYSIS_MOBILE_APP")
+			.send({
+				email: payload.email,
+				password: payload.password,
+			});
+
+		expect(status).toBe(200);
+		expect(body).toHaveProperty("token");
+	});
+
+	it("should NOT authenticate with not admin account from web app", async () => {
+		const payload = generateCreateAccountRequest(false);
+
+		await request(URL).post("/accounts").send(payload);
+
+		const { status } = await request(URL)
+			.post("/accounts/auth")
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
+			.send({
+				email: payload.email,
+				password: payload.password,
+			});
+
+		expect(status).toBe(403);
+	});
+
+	it("should NOT authenticate without header", async () => {
+		const payload = {
+			email: account.email,
+			password: account.password,
+		};
+
+		const { status } = await request(URL).post("/accounts/auth").send(payload);
+
+		expect(status).toBe(400);
 	});
 
 	it("should show account", async () => {
@@ -77,7 +142,10 @@ describe("Account Endpoint", () => {
 			password: "strong_password",
 		};
 
-		const { status } = await request(URL).post("/accounts/auth").send(payload);
+		const { status } = await request(URL)
+			.post("/accounts/auth")
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
+			.send(payload);
 
 		expect(status).toBe(403);
 	});
@@ -90,6 +158,7 @@ describe("Account Endpoint", () => {
 
 		const { body, status } = await request(URL)
 			.post("/accounts/auth")
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
 			.send(payload);
 
 		expect(status).toBe(200);
@@ -114,7 +183,10 @@ describe("Account Endpoint", () => {
 			password: account.password,
 		};
 
-		const { status } = await request(URL).post("/accounts/auth").send(payload);
+		const { status } = await request(URL)
+			.post("/accounts/auth")
+			.set("Client-Type", "MANAGEMENT_WEB_APP")
+			.send(payload);
 
 		expect(status).toBe(404);
 	});

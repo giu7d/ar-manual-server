@@ -55,7 +55,11 @@ describe("Analysis Endpoint", () => {
 	});
 
 	it("should create analysis for non admin users from mobile app", async () => {
-		const bearerTokenWithoutAdminPermission = await createCredentials(false);
+		const bearerTokenWithoutAdminPermission = await createCredentials(
+			false,
+			"ANALYSIS_MOBILE_APP"
+		);
+
 		const payload = {
 			finishedAt: analysis.finishedAt,
 			startedAt: analysis.startedAt,
