@@ -1,12 +1,12 @@
 import { compose } from "compose-middleware";
 
-import { AuthenticationLogic } from "./AuthenticationLogic";
+import { AuthenticationService } from "../../services/Authentication/AuthenticationService";
 import { AuthenticationMiddleware } from "./AuthenticationMiddleware";
 import { authenticationMiddlewareValidator } from "./AuthenticationMiddlewareValidation";
 
-const logic = new AuthenticationLogic();
+const service = new AuthenticationService();
 
-const middleware = new AuthenticationMiddleware(logic);
+const middleware = new AuthenticationMiddleware(service);
 
 export const authenticationMiddleware = compose([
 	authenticationMiddlewareValidator,

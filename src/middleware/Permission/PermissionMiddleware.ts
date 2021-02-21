@@ -1,16 +1,14 @@
 import { Response, Request, NextFunction } from "express";
 
-import { PermissionLogic } from "./PermissionLogic";
+import { PermissionService } from "src/services/Permission/PermissionService";
 
 export class PermissionMiddleware {
-	constructor(private logic: PermissionLogic) {}
+	constructor(private service: PermissionService) {}
 
 	async handle(request: Request, response: Response, next: NextFunction) {
 		try {
-			const { authorization } = request.headers;
-
-			await this.logic.execute({
-				bearerToken: authorization,
+			await this.service.execute({
+				accountId: request.headers["api-account-id"] as string,
 				clientType: request.headers["client-type"] as string,
 			});
 

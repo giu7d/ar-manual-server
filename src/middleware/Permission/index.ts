@@ -1,14 +1,14 @@
 import { compose } from "compose-middleware";
 
 import { PGAccountRepository } from "src/repositories/Account/implementations/PGAccountRepository";
+import { PermissionService } from "src/services/Permission/PermissionService";
 
-import { PermissionLogic } from "./PermissionLogic";
 import { PermissionMiddleware } from "./PermissionMiddleware";
 import { permissionMiddlewareValidator } from "./PermissionMiddlewareValidation";
 
-const logic = new PermissionLogic(new PGAccountRepository());
+const service = new PermissionService(new PGAccountRepository());
 
-export const middleware = new PermissionMiddleware(logic);
+export const middleware = new PermissionMiddleware(service);
 
 export const permissionMiddleware = compose([
 	permissionMiddlewareValidator,
