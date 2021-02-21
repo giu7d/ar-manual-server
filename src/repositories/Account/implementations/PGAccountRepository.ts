@@ -12,11 +12,8 @@ export class PGAccountRepository implements IAccountsRepository {
 	}
 
 	async save(account: Account) {
-		if (!account) {
-			throw new ApplicationError(400, "Account needs to be passed!");
-		}
-
-		await this.repository().save(account);
+		const accountORM = new AccountORM(account);
+		await this.repository().save(accountORM);
 	}
 
 	async modify(
@@ -24,22 +21,10 @@ export class PGAccountRepository implements IAccountsRepository {
 		account: Partial<Omit<Account, "id" | "email">>,
 		isActive = true
 	) {
-		if (!id) {
-			throw new ApplicationError(400, "Id needs to be passed!");
-		}
-
-		if (!account) {
-			throw new ApplicationError(400, "Account needs to be passed!");
-		}
-
 		await this.repository().update({ id, isActive }, account);
 	}
 
 	async delete(id: string) {
-		if (!id) {
-			throw new ApplicationError(400, "Id needs to be passed!");
-		}
-
 		await this.repository().update({ id, isActive: true }, { isActive: false });
 	}
 

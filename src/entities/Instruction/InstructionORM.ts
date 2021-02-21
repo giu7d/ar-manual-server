@@ -46,4 +46,9 @@ export class InstructionORM extends Instruction {
 
 	@ManyToOne(() => TestBenchORM, (testBench) => testBench.instructions)
 	testBench: TestBenchORM;
+
+	constructor(props: Instruction) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

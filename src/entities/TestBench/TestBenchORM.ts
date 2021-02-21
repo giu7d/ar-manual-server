@@ -54,4 +54,9 @@ export class TestBenchORM extends TestBench {
 
 	@OneToMany(() => AnalysisORM, (analysis) => analysis.testBench)
 	analysis: AnalysisORM[];
+
+	constructor(props: TestBench) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

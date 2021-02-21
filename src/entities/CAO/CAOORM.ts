@@ -17,4 +17,9 @@ export class CAOORM extends CAO {
 
 	@Column({ type: "json" })
 	items: CAOItem[];
+
+	constructor(props: CAO) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

@@ -20,4 +20,9 @@ export class InstructionSourceORM extends InstructionSource {
 
 	@ManyToOne(() => InstructionORM, (instruction) => instruction.sources)
 	instruction: InstructionORM;
+
+	constructor(props: InstructionSource) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

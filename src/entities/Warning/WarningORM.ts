@@ -20,4 +20,9 @@ export class WarningORM extends Warning {
 
 	@ManyToOne(() => InstructionORM, (instruction) => instruction.warnings)
 	instruction: InstructionORM;
+
+	constructor(props: WarningORM) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

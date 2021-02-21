@@ -12,6 +12,7 @@ export class PGInstructionSourceRepository
 	}
 
 	async save(instructionId: string, instructionSource: InstructionSource) {
-		await this.repository().save(instructionSource);
+		const instructionSourceORM = new InstructionSourceORM(instructionSource);
+		await this.repository().save(instructionSourceORM);
 	}
 }

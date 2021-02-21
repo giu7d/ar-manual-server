@@ -48,4 +48,9 @@ export class AccountORM extends Account {
 
 	@OneToMany(() => AnalysisORM, (analysis) => analysis.account)
 	analysis: AnalysisORM[];
+
+	constructor(props: Account) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

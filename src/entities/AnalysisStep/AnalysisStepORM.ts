@@ -37,4 +37,9 @@ export class AnalysisStepORM extends AnalysisStep {
 
 	@ManyToOne(() => InstructionORM, (instruction) => instruction.analysisStep)
 	instruction: InstructionORM;
+
+	constructor(props: AnalysisStep) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

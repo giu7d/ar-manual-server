@@ -8,10 +8,6 @@ import { IAnalysisStepRepository } from "../IAnalysisStepRepository";
 
 export class PGAnalysisStepRepository implements IAnalysisStepRepository {
 	async findByAnalysis(analysis: Analysis[]) {
-		if (!analysis) {
-			throw new ApplicationError(400, "Analysis needs to be passed!");
-		}
-
 		const analysisIds = analysis.flatMap(({ id }) => id);
 
 		const steps = await getRepository(AnalysisStepORM).find({

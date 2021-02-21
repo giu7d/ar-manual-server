@@ -31,4 +31,9 @@ export class AnalysisORM extends Analysis {
 
 	@OneToMany(() => AnalysisStepORM, (data) => data.analysis, { cascade: true })
 	steps: AnalysisStepORM[];
+
+	constructor(props: Analysis) {
+		super(props);
+		Object.assign(this, props);
+	}
 }

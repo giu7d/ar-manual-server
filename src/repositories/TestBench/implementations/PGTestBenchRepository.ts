@@ -11,7 +11,8 @@ export class PGTestBenchRepository implements ITestBenchRepository {
 	}
 
 	async save(testBench: TestBench) {
-		await this.repository().save(testBench);
+		const testBenchORM = new TestBenchORM(testBench);
+		await this.repository().save(testBenchORM);
 	}
 
 	async modify(testBench: TestBench) {
@@ -20,7 +21,6 @@ export class PGTestBenchRepository implements ITestBenchRepository {
 
 	async find(isActive = true) {
 		const testBenches = await this.repository().find({ where: { isActive } });
-
 		return testBenches;
 	}
 

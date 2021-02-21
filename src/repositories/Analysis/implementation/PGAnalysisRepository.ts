@@ -11,7 +11,8 @@ export class PGAnalysisRepository implements IAnalysisRepository {
 	}
 
 	async save(analysis: Analysis) {
-		await this.repository().save(analysis);
+		const analysisORM = new AnalysisORM(analysis);
+		await this.repository().save(analysisORM);
 	}
 
 	async find(testBenchId: string) {
