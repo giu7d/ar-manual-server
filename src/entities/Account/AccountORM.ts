@@ -33,6 +33,11 @@ export class AccountORM extends Account {
 	@Column()
 	password: string;
 
+	@Column({
+		default: false,
+	})
+	isAdmin: boolean;
+
 	@Column()
 	salt: string;
 

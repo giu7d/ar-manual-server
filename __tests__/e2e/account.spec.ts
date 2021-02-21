@@ -15,12 +15,13 @@ const account = {
 };
 
 describe("Account Endpoint", () => {
-	it("should create account", async () => {
+	it("should admin create account", async () => {
 		const payload = {
 			firstName: "FirstName",
 			lastName: "LastName",
 			email: account.email,
 			password: account.password,
+			isAdmin: true,
 		};
 
 		const { body, status } = await request(URL).post("/accounts").send(payload);

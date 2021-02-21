@@ -13,6 +13,7 @@ export async function createCredentials() {
 		lastName: "LastName",
 		email: `${uuid()}@dev.com`,
 		password: uuid(),
+		isAdmin: true,
 	};
 
 	await request(URL).post("/accounts").send(payload);

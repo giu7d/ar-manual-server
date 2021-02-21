@@ -11,6 +11,8 @@ export class Account {
 
 	password: string;
 
+	isAdmin: boolean;
+
 	salt: string;
 
 	isActive: boolean;

@@ -36,21 +36,21 @@ routes.post(
 
 routes.delete(
 	"/accounts/:accountId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => deleteAccountController.validator(req, res, next),
 	(req, res) => deleteAccountController.handle(req, res)
 );
 
 routes.get(
 	"/accounts/:accountId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => showAccountController.validator(req, res, next),
 	(req, res) => showAccountController.handle(req, res)
 );
 
 routes.put(
 	"/accounts/:accountId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => modifyAccountController.validator(req, res, next),
 	(req, res) => modifyAccountController.handle(req, res)
 );
@@ -58,35 +58,35 @@ routes.put(
 // Test Benches
 routes.post(
 	"/testbenches",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => createTestBenchController.validator(req, res, next),
 	(req, res) => createTestBenchController.handle(req, res)
 );
 
 routes.get(
 	"/testbenches",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => indexTestBenchController.validator(req, res, next),
 	(req, res) => indexTestBenchController.handle(req, res)
 );
 
 routes.get(
 	"/testbenches/:testBenchId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => showTestBenchController.validator(req, res, next),
 	(req, res) => showTestBenchController.handle(req, res)
 );
 
 routes.put(
 	"/testbenches/:testBenchId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => modifyTestBenchController.validator(req, res, next),
 	(req, res) => modifyTestBenchController.handle(req, res)
 );
 
 routes.delete(
 	"/testbenches/:testBenchId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => deleteTestBenchController.validator(req, res, next),
 	(req, res) => deleteTestBenchController.handle(req, res)
 );
@@ -94,14 +94,14 @@ routes.delete(
 // Test Benches Instructions
 routes.post(
 	"/testbenches/:testBenchId/instructions",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => createInstructionController.validator(req, res, next),
 	(req, res) => createInstructionController.handle(req, res)
 );
 
 routes.put(
 	"/testbenches/:testBenchId/instructions/:instructionId",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => modifyInstructionController.validator(req, res, next),
 	(req, res) => modifyInstructionController.handle(req, res)
 );
@@ -109,14 +109,14 @@ routes.put(
 // Analysis
 routes.post(
 	"/analysis",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => createAnalysisController.validator(req, res, next),
 	(req, res) => createAnalysisController.handle(req, res)
 );
 
 routes.get(
 	"/analysis",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => indexAnalysisController.validator(req, res, next),
 	(req, res) => indexAnalysisController.handle(req, res)
 );
@@ -124,14 +124,14 @@ routes.get(
 // Upload Files
 routes.post(
 	"/upload/form/:folder",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => uploadFormDataController.validate(req, res, next),
 	(req, res) => uploadFormDataController.handle(req, res)
 );
 
 routes.post(
 	"/upload/base64/:folder",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => uploadBase64Controller.validate(req, res, next),
 	(req, res) => uploadBase64Controller.handle(req, res)
 );
@@ -139,7 +139,7 @@ routes.post(
 // Statistics
 routes.get(
 	"/testbenches/:testBenchId/statistics",
-	(req, res, next) => authenticationMiddleware.handle(req, res, next),
+	authenticationMiddleware,
 	(req, res, next) => showStatisticsController.validator(req, res, next),
 	(req, res) => showStatisticsController.handle(req, res)
 );
