@@ -40,7 +40,6 @@ export class ShowStatisticsUseCase {
 
 		const failuresToday = await this.failuresToday();
 		const componentMostUsed = await this.componentMostAnalysis();
-		console.log(componentMostUsed);
 		return {
 			commonFailures,
 			failuresByTime,
@@ -52,10 +51,15 @@ export class ShowStatisticsUseCase {
 	}
 
 	private async failuresToday() {
-		const analysis = await this.analysisRepository.findAllByDay(new Date());
+		const todayDate = new Date();
+
+		todayDate.setHours(0);
+		todayDate.setMinutes(0);
+		todayDate.setSeconds(0);
+
+		const analysis = await this.analysisRepository.findAllByDay(todayDate);
 		return analysis.length;
 	}
-
 	private async componentMostAnalysis() {
 		const analysis = await this.analysisRepository.findAll();
 		const analysisByComponent = {};
@@ -71,7 +75,7 @@ export class ShowStatisticsUseCase {
 
 		const [componentMostAnalysis] = Object.keys(analysisByComponent)
 			.map((key) => ({ key, value: analysisByComponent[key] }))
-			.sort((a, b) => a.value - b.value);
+			.sort((a, b) => b.value - a.value);
 
 		if (!componentMostAnalysis) return undefined;
 
