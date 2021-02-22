@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
 import { IAccountsRepository } from "src/repositories/Account/IAccountsRepository";
-import { PermissionService } from "src/services/Permission/PermissionService";
 import { ApplicationError, hashPassword } from "src/utils";
 
 import { IAuthenticateAccountRequestDTO } from "./AuthenticateAccountDTO";
