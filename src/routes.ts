@@ -11,7 +11,7 @@ import { createAnalysisController } from "src/useCases/Analysis/CreateAnalysis";
 import { indexAnalysisController } from "src/useCases/Analysis/IndexAnalysis";
 import { createInstructionController } from "src/useCases/Instructions/CreateInstruction";
 import { modifyInstructionController } from "src/useCases/Instructions/ModifyInstruction";
-import { showStatisticsController } from "src/useCases/Statistics/ShowStatisticsStatistics";
+import { showStatisticsController } from "src/useCases/Statistics/ShowStatistics";
 import { createTestBenchController } from "src/useCases/TestBenches/CreateTestBench";
 import { deleteTestBenchController } from "src/useCases/TestBenches/DeleteTestBench";
 import { indexTestBenchController } from "src/useCases/TestBenches/IndexTestBench";

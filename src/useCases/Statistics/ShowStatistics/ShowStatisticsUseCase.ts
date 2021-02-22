@@ -38,6 +38,43 @@ export class ShowStatisticsUseCase {
 		const failuresByUsers = FailuresByUserStatisticsFactory.create(analysis);
 		const usersByTime = UsersByTimeStatisticsFactory.create(analysis);
 
-		return { commonFailures, failuresByTime, failuresByUsers, usersByTime };
+		const failuresToday = await this.failuresToday();
+		const componentMostUsed = await this.componentMostAnalysis();
+		console.log(componentMostUsed);
+		return {
+			commonFailures,
+			failuresByTime,
+			failuresByUsers,
+			usersByTime,
+			failuresToday,
+			componentMostUsed,
+		};
+	}
+
+	private async failuresToday() {
+		const analysis = await this.analysisRepository.findAllByDay(new Date());
+		return analysis.length;
+	}
+
+	private async componentMostAnalysis() {
+		const analysis = await this.analysisRepository.findAll();
+		const analysisByComponent = {};
+
+		analysis.forEach(({ testBench }) => {
+			if (!analysisByComponent[testBench.componentSerialNumber]) {
+				analysisByComponent[testBench.componentSerialNumber] = 1;
+			} else {
+				analysisByComponent[testBench.componentSerialNumber] =
+					analysisByComponent[testBench.componentSerialNumber] + 1;
+			}
+		});
+
+		const [componentMostAnalysis] = Object.keys(analysisByComponent)
+			.map((key) => ({ key, value: analysisByComponent[key] }))
+			.sort((a, b) => a.value - b.value);
+
+		if (!componentMostAnalysis) return undefined;
+
+		return componentMostAnalysis.key;
 	}
 }
