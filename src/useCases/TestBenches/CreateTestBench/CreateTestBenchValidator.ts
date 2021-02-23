@@ -48,6 +48,6 @@ export const createTestBenchValidatorHandler = celebrate({
 					conformity: Joi.string().required(),
 				})
 			),
-		}).required(),
+		}),
 	}),
 });
