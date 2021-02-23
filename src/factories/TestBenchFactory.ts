@@ -16,7 +16,12 @@ export class TestBenchFactory {
 			instructions as Instruction[]
 		);
 
-		const instantiatedCAO = CAOFactory.create(cao as CAO);
+		const instantiatedCAO = !cao
+			? new CAO({
+					description: "no description",
+					items: [],
+			  })
+			: CAOFactory.create(cao as CAO);
 
 		const instantiatedTestBench = new TestBench({
 			...testBench,

@@ -18,7 +18,7 @@ export interface ICreateTestBenchRequestDTO {
 		}[];
 	}[];
 
-	cao: {
+	cao?: {
 		description: string;
 		items: {
 			description: string;

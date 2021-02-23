@@ -34,22 +34,20 @@ export const createTestBenchValidatorHandler = celebrate({
 		),
 		cao: Joi.object({
 			description: Joi.string().required(),
-			items: Joi.array()
-				.items(
-					Joi.object({
-						description: Joi.string().required(),
-						frequency: Joi.alternatives(
-							Joi.string(),
-							Joi.object({
-								series: Joi.string().required(),
-								reforce: Joi.string().required(),
-							})
-						).required(),
-						method: Joi.string().required(),
-						conformity: Joi.string().required(),
-					})
-				)
-				.required(),
+			items: Joi.array().items(
+				Joi.object({
+					description: Joi.string().required(),
+					frequency: Joi.alternatives(
+						Joi.string(),
+						Joi.object({
+							series: Joi.string().required(),
+							reforce: Joi.string().required(),
+						})
+					).required(),
+					method: Joi.string().required(),
+					conformity: Joi.string().required(),
+				})
+			),
 		}).required(),
 	}),
 });
