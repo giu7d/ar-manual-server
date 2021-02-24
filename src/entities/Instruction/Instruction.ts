@@ -12,6 +12,8 @@ export class Instruction {
 
 	step: number;
 
+	inspectionType: "VISUAL-INSPECTION" | "GEOMETRIC-INSPECTION";
+
 	nextInstructionId?: string;
 
 	sources: InstructionSource[];

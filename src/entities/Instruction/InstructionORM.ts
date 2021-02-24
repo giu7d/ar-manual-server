@@ -25,6 +25,11 @@ export class InstructionORM extends Instruction {
 	step: number;
 
 	@Column({
+		default: "GEOMETRIC-INSPECTION",
+	})
+	inspectionType: "VISUAL-INSPECTION" | "GEOMETRIC-INSPECTION";
+
+	@Column({
 		nullable: true,
 	})
 	nextInstructionId?: string;

@@ -15,6 +15,9 @@ export const createTestBenchValidatorHandler = celebrate({
 				step: Joi.number().required(),
 				title: Joi.string().required(),
 				description: Joi.string().required(),
+				inspectionType: Joi.string()
+					.valid("VISUAL-INSPECTION", "GEOMETRIC-INSPECTION")
+					.required(),
 				sources: Joi.array()
 					.items(
 						Joi.object({

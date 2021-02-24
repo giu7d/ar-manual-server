@@ -11,7 +11,7 @@ let bearerToken = null;
 
 const testBench = generateTestBench();
 
-describe("Account Endpoint", () => {
+describe("Test Bench Endpoint", () => {
 	beforeAll(async () => {
 		bearerToken = await createCredentials();
 	});
@@ -144,6 +144,7 @@ describe("Account Endpoint", () => {
 					step: 3,
 					title: "INSTRUCTION_3",
 					description: "DESCRIPTION_3, DESCRIPTION_3, DESCRIPTION_3",
+					inspectionType: "VISUAL-INSPECTION",
 					sources: [
 						{
 							type: "image",

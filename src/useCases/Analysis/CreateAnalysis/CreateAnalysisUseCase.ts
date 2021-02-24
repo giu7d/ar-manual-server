@@ -42,7 +42,7 @@ export class CreateAnalysisUseCase {
 						instruction: testBench.instructions.find(
 							({ id }) => step.instructionId === id
 						),
-						failure: step.failure || undefined,
+						failure: step.failure,
 					})
 			),
 		});

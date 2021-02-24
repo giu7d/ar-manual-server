@@ -13,11 +13,13 @@ export class CommonFailuresStatisticsFactory {
 			({ status }) => status === "failure"
 		);
 
-		const caoItemIds = failureAnalysis.map(({ failure }) => failure.caoItemId);
+		const instructionId = failureAnalysis.map(
+			({ instruction }) => instruction.id
+		);
 
 		const commonFailures: CommonFailures[] = [];
 
-		caoItemIds.forEach((id) => {
+		instructionId.forEach((id) => {
 			const index = commonFailures.findIndex((failure) => failure.id === id);
 
 			if (index === -1) {

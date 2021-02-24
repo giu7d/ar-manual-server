@@ -6,5 +6,6 @@ export interface ICreateInstructionRequestDTO {
 		type: "image" | "video" | "3D";
 		src: string;
 	}[];
+	inspectionType: "VISUAL-INSPECTION" | "GEOMETRIC-INSPECTION";
 	warnings: { description: string }[];
 }

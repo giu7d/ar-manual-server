@@ -18,6 +18,7 @@ export const generateCreateTestBenchRequest = () => ({
 			step: 1,
 			title: "INSTRUCTION_1",
 			description: "DESCRIPTION_1, DESCRIPTION_1, DESCRIPTION_1",
+			inspectionType: "VISUAL-INSPECTION",
 			sources: [
 				{
 					type: "image",
@@ -29,6 +30,7 @@ export const generateCreateTestBenchRequest = () => ({
 			step: 2,
 			title: "INSTRUCTION_2",
 			description: "DESCRIPTION_2, DESCRIPTION_2, DESCRIPTION_2",
+			inspectionType: "GEOMETRIC-INSPECTION",
 			sources: [
 				{
 					type: "image",

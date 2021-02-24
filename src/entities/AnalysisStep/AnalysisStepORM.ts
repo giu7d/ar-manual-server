@@ -21,9 +21,7 @@ export class AnalysisStepORM extends AnalysisStep {
 		nullable: true,
 	})
 	failure?: {
-		description?: string;
 		src: string[];
-		caoItemId: string;
 	};
 
 	@Column()

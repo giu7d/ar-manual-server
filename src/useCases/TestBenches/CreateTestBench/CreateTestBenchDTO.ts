@@ -9,6 +9,7 @@ export interface ICreateTestBenchRequestDTO {
 		step: number;
 		title: string;
 		description: string;
+		inspectionType: "VISUAL-INSPECTION" | "GEOMETRIC-INSPECTION";
 		sources: {
 			type: "image" | "video" | "3D";
 			src: string;

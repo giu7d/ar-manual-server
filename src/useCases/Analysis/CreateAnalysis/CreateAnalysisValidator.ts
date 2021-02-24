@@ -10,20 +10,18 @@ export const createAnalysisValidatorHandler = celebrate({
 	[Segments.BODY]: Joi.object<
 		Omit<ICreateAnalysisRequestDTO, "testBenchId" | "accountId">
 	>({
-		status: Joi.string().allow("approved", "failure").required(),
+		status: Joi.string().valid("approved", "failure").required(),
 		startedAt: Joi.date().required(),
 		finishedAt: Joi.date().required(),
 		steps: Joi.array()
 			.items(
 				Joi.object({
 					instructionId: Joi.string().required(),
-					status: Joi.string().allow("approved", "failure").required(),
+					status: Joi.string().valid("approved", "failure").required(),
 					startedAt: Joi.date().required(),
 					finishedAt: Joi.date().required(),
 					failure: Joi.object({
-						caoItemId: Joi.string().required(),
 						src: Joi.array().items(Joi.string().required()).required(),
-						description: Joi.string(),
 					}),
 				})
 			)
