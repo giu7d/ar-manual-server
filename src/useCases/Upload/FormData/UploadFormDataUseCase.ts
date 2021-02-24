@@ -33,7 +33,7 @@ export class UploadFormDataUseCase {
 				const [oldName, format] = name.split(".");
 				const [type] = mimetype.split("/");
 
-				if (!format.match(/jpg|jpeg|png|glb/)) {
+				if (!format.toLowerCase().match(/jpg|jpeg|png|glb/)) {
 					throw new FileUploadFormatError(format);
 				}
 

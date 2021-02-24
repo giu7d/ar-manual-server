@@ -35,7 +35,7 @@ export class UploadBase64UseCase {
 			filesWithBinary.map(async ({ binary, mimetype }) => {
 				const [type, format] = mimetype.split("/");
 
-				if (!format.match(/jpg|jpeg|png|gltf-binary/)) {
+				if (!format.toLowerCase().match(/jpg|jpeg|png|gltf-binary/)) {
 					throw new FileUploadFormatError(format);
 				}
 
