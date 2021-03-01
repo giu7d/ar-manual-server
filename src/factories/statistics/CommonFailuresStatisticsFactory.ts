@@ -23,13 +23,13 @@ export class CommonFailuresStatisticsFactory {
 			const index = commonFailures.findIndex((failure) => failure.id === id);
 
 			if (index === -1) {
-				const caoItem = testBench.cao.items.find(
-					(caoItem) => caoItem.id === id
+				const instructionItem = testBench.instructions.find(
+					(instruction) => instruction.id === id
 				);
 
 				commonFailures.push({
 					id,
-					failure: caoItem ? caoItem.description : "",
+					failure: instructionItem ? instructionItem.title.toLowerCase() : "",
 					qtd: 1,
 				});
 			} else {

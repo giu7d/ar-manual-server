@@ -16,6 +16,7 @@ export class PGAnalysisStepRepository implements IAnalysisStepRepository {
 					id: In(analysisIds),
 				},
 			},
+			relations: ["instruction"],
 		});
 
 		if (!steps) {

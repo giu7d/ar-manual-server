@@ -20,13 +20,13 @@ export class ShowStatisticsUseCase {
 		const testBench = await this.testBenchRepository.findById(data.testBenchId);
 		const analysis = await this.analysisRepository.find(testBench.id);
 
-		if (analysis.length === 0) {
+		if (!analysis.length) {
 			throw new ApplicationError(404, "No analysis available!");
 		}
 
 		const steps = await this.analysisStepRepository.findByAnalysis(analysis);
 
-		if (steps.length === 0) {
+		if (!steps.length) {
 			throw new ApplicationError(404, "No analysis steps available!");
 		}
 
